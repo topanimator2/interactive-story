@@ -1,0 +1,13 @@
+[
+    {
+      "title": "Sample Story",
+      "folder": "sample_story",
+      "image": "sample_story/image.jpg"
+    },
+    {
+      "title": "Another Story",
+      "folder": "another_story",
+      "image": "another_story/another_image.jpg"
+    }
+  ]
+  
