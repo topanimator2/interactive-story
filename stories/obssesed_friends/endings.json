@@ -1,0 +1,33 @@
+{
+    "endings": {
+      "EmmaEnd": {
+        "title": "Emma's True Ending",
+        "text": "Emma’s obsession finally reaches its peak. One night, she lures you to her house, claiming she has a special surprise for you. Once inside, she locks the door, and you realize too late that there’s no escape. 'We’ll be together forever,' she says as she pulls out a blade.",
+        "image": "emma_ending.png",
+        "music": "dark_theme.mp3",
+        "function": "play_music"
+      },
+      "MarcusEnd": {
+        "title": "Marcus's True Ending",
+        "text": "Marcus’s jealousy and obsession drive him to confront anyone who gets too close to you. In a final, violent confrontation, he kills one of the other villagers in a fit of rage. He drags you back to his forge, saying, 'No one else deserves you.'",
+        "image": "marcus_ending.png",
+        "music": "forging_fire.mp3",
+        "function": "play_music"
+      },
+      "LilyEnd": {
+        "title": "Lily's True Ending",
+        "text": "Lily's possessiveness leads her to remove anyone who poses a threat to her intellectual bond with you. One day, you find yourself locked in the library, with Lily telling you that 'books will be your only company now.'",
+        "image": "lily_ending.png",
+        "music": "library_theme.mp3",
+        "function": "play_music"
+      },
+      "JohnEnd": {
+        "title": "John's True Ending",
+        "text": "John's obsession with watching you leads him to take drastic measures. You awaken one day to find yourself alone on the lake, with John at the oars, whispering, 'Now you’re part of the village forever.'",
+        "image": "john_ending.png",
+        "music": "lake_theme.mp3",
+        "function": "play_music"
+      }
+    }
+  }
+  

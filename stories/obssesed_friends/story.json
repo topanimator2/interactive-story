@@ -1,0 +1,111 @@
+{
+    "story": {
+      "intro": {
+        "text": "You arrive in the village of Hallowvale, a quiet and isolated place. As a returning local or new arrival, the village holds a mix of charm and unease. The people seem familiar, yet there’s something unsettling beneath the surface.",
+        "options": [
+          ["Explore the village square", "villageSquare"]
+        ]
+      },
+      "villageSquare": {
+        "text": "The village square is bustling with activity. Here, you meet various locals, each with their own quirks and secrets. Who will you talk to?",
+        "options": [
+          ["Talk to Emma, the florist", "emmaIntroduction"],
+          ["Talk to Marcus, the blacksmith", "marcusIntroduction"],
+          ["Talk to Lily, the librarian", "lilyIntroduction"],
+          ["Talk to John, the fisherman", "johnIntroduction"]
+        ]
+      },
+      "emmaIntroduction": {
+        "text": "Emma, the florist, is arranging flowers with obsessive care. Her beauty hides a dark intensity. 'Do you like flowers?' she asks, eyes glimmering.",
+        "options": [
+          ["Compliment her work", "emmaCompliment"],
+          ["Ask about her flower arrangements", "emmaFlowerTalk"]
+        ]
+      },
+      "emmaCompliment": {
+        "text": "Emma blushes at your compliment. 'Thank you,' she says, 'I work hard on them. I could show you more sometime... if you'd like.' Her eyes linger on you a little too long.",
+        "options": [
+          ["Agree to see more", "emmaInvite"],
+          ["Politely decline", "villageSquare"]
+        ]
+      },
+      "emmaFlowerTalk": {
+        "text": "Emma begins explaining the meanings behind each flower she arranges, but the way she talks about them seems more like she's describing people rather than plants.",
+        "options": [
+          ["Continue listening", "emmaDeeperTalk"],
+          ["Excuse yourself", "villageSquare"]
+        ]
+      },
+      "emmaInvite": {
+        "text": "You agree to see more of Emma's work. She gives you a sly smile, 'I have something special I want to show you. Maybe later... when it's quieter.'",
+        "options": [
+          ["Go with her now", "emmaArtObsess"],
+          ["Wait until later", "villageSquare"]
+        ]
+      },
+      "emmaArtObsess": {
+        "text": "You enter Emma's studio, only to find it filled with portraits of yourself. At first, they appear normal—perhaps even flattering—but as you move deeper into the room, the images grow darker. Paintings of you bleeding, lying lifeless, or bound in chains cover the walls.<br><br>'I thought you would like them,' Emma whispers. Her breath on your neck sends chills down your spine.",
+        "options": [
+          ["Confront Emma about the disturbing images", "emmaEndConfront"],
+          ["Flee the studio in terror", "villageSquare"]
+        ]
+      },
+      "marcusIntroduction": {
+        "text": "Marcus, the blacksmith, wipes sweat from his brow as he works. 'New face around here, huh?' His strong presence is undeniable, but there’s something unsettling in his intensity.",
+        "options": [
+          ["Ask about his work", "marcusTalkWork"],
+          ["Compliment his strength", "marcusCompliment"]
+        ]
+      },
+      "marcusCompliment": {
+        "text": "Marcus smirks, 'Strength's all I've got, but it gets the job done.' He seems proud, but there's a hint of violence in his tone.",
+        "options": [
+          ["Ask about the village", "marcusVillageTalk"],
+          ["Leave", "villageSquare"]
+        ]
+      },
+      "lilyIntroduction": {
+        "text": "Lily, the librarian, watches you with keen interest as you enter the library. Her eyes are calculating, as though she’s already forming opinions about you.",
+        "options": [
+          ["Ask about the library", "lilyLibraryTalk"],
+          ["Talk about books", "lilyBooksTalk"]
+        ]
+      },
+      "johnIntroduction": {
+        "text": "John, the fisherman, stands quietly by the lake, casting his line. His quiet demeanor hides a deep intensity.",
+        "options": [
+          ["Ask about fishing", "johnFishingTalk"],
+          ["Compliment his catch", "johnCatchTalk"]
+        ]
+      },
+      "emmaEndConfront": {
+        "text": "Emma's eyes darken as you confront her about the disturbing paintings. 'You don’t understand!' she yells. 'No one else can have you!' Before you can react, she lunges toward you with a pair of garden shears.",
+        "options": [
+          ["Fight her off", "emmaFinalFight"],
+          ["Run for your life", "villageSquare"]
+        ]
+      },
+      "emmaFinalFight": {
+        "text": "You barely manage to fight Emma off. She stumbles, dropping the shears, and you make your escape, but her obsession is far from over...",
+        "options": [
+          ["Escape the village", "endGame"],
+          ["Confront her again", "villageSquare"]
+        ]
+      },
+      "johnFishingTalk": {
+        "text": "John quietly explains his fishing methods, though his words seem distant, as if his mind is elsewhere.",
+        "options": [
+          ["Listen closely", "johnReveal"],
+          ["Leave", "villageSquare"]
+        ]
+      },
+      "johnReveal": {
+        "text": "John's quiet voice drops as he reveals a dark secret: some who come to this village never leave. 'I don’t talk much, but I see everything,' he whispers.",
+        "options": [
+          ["Ask what he means", "johnMoreSecrets"],
+          ["Leave in silence", "villageSquare"]
+        ]
+      }
+    }
+  }
+  

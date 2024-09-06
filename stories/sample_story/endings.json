@@ -3,7 +3,7 @@
       "title": "Empty Ending",
       "text": "This is the empty ending text.",
       "image": "ending_image.jpg",
-      "music": "extra/music1.mp3",
+      "music": "music1.mp3",
       "function": "function_empty"
     }
   }
