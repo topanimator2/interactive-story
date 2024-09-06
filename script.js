@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load story information for the overview screen
   async function loadStoryOverview() {
     try {
-      const storyOverviewUrl = `${GITHUB_BASE_URL}/stories/storyInfo.json`;
+      const storyOverviewUrl = `${GITHUB_BASE_URL}/stories/storyinfo.json`;
       const stories = await loadJsonFromGitHub(storyOverviewUrl);
 
       // Create a main screen with story overviews
