@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let storyText = document.querySelector("#story-text");
   let optionsContainer = document.querySelector("#options-container");
 
-  const GITHUB_BASE_URL = "https://raw.githubusercontent.com/topanimator2/interactive-story/main/stories/storyinfo.json";
+  const GITHUB_BASE_URL = "https://raw.githubusercontent.com/topanimator2/interactive-story/main";
 
   // Function to load JSON from GitHub
   async function loadJsonFromGitHub(url) {
