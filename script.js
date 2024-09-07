@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Start the story at the 'Start' node
       updateStory("Start");
+
+      // Update the hash in the URL with the initial state
+      updateHash();
     } catch (error) {
       console.error("Error loading story:", error);
     }
@@ -93,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
         updateStory(nextPart);
+        updateHash(); // Update the hash whenever the story updates
       };
 
       if (checkConditions(funcs)) {
@@ -189,6 +193,27 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error(`Ending not found: ${endingKey}`);
     }
   }
+
+  // Function to update the URL hash with the current story state
+  function updateHash() {
+    const stateString = Object.entries(storyState).map(([key, value]) => `${key}=${value}`).join("&");
+    window.location.hash = `#${stateString}`;
+  }
+
+  // Function to initialize the story state from the URL hash
+  function initStateFromHash() {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const statePairs = hash.split("&");
+    statePairs.forEach(pair => {
+      const [key, value] = pair.split("=");
+      storyState[key] = isNaN(value) ? value : parseInt(value);
+    });
+  }
+
+  // Initialize the story state from the URL hash on page load
+  initStateFromHash();
 
   // Initialize the story overview screen when the page loads
   loadStoryOverview();
