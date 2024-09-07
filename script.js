@@ -214,19 +214,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to handle the end of the story
   function endStory(endingKey) {
-    const ending = storyEndings.endings[endingKey];
+    const ending = storyEndings[endingKey]; // Use the endingKey to fetch the right ending from endings.json
     if (ending) {
       title.textContent = ending.title;
       storyText.innerHTML = ending.text;
 
       if (ending.image) {
         const imageElement = new Image();
-        imageElement.src = `${GITHUB_BASE_URL}/${ending.image}`;
+        imageElement.src = `${GITHUB_BASE_URL}/${currentStory}/${ending.image}`;
         document.body.appendChild(imageElement);
       }
 
       if (ending.music) {
-        const audio = new Audio(`${GITHUB_BASE_URL}/${ending.music}`);
+        const audio = new Audio(`${GITHUB_BASE_URL}/${currentStory}/${ending.music}`);
         audio.play();
       }
 
