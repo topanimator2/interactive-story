@@ -50,6 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       document.body.appendChild(overviewContainer);
+
+      // Hide the overview if the story is loaded from the URL hash
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        overviewContainer.style.display = "none";
+      }
+
     } catch (error) {
       console.error("Error loading story overview:", error);
     }
@@ -71,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       storyData = await loadJsonFromGitHub(storyUrl);
       storyEndings = await loadJsonFromGitHub(endingsUrl);
 
-      // Start the story at the 'Start' node
+      // Start the story at the specified part
       updateStory(currentPart);
 
       // Update the hash in the URL with the initial state
@@ -224,13 +231,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
-      // Hide the story chooser when loading from hash
+      // Hide the story chooser and load the story with the current state
       const overviewContainer = document.getElementById("overview-container");
       if (overviewContainer) {
         overviewContainer.style.display = "none";
       }
 
-      // Load the story with the current state
       loadStory(currentStory);
     }
   }

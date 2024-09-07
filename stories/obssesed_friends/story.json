@@ -33,21 +33,157 @@
     "text": "You enter the flower shop, filled with the scent of fresh blooms. Emma, the florist, is here.",
     "options": [["Talk to Emma", "emmaIntroduction"], ["Leave the shop", "villageSquare"]]
   },
-  "emmaIntroduction": {
-    "text": "Emma arranges flowers with obsessive care. 'Do you like flowers?' she asks, eyes glimmering.",
-    "options": [
-      ["Compliment her work", "emmaCompliment", [["condition", "charming", ">", "0"]]],
-      ["Ask about her flowers", "emmaFlowerTalk"],
-      ["Ask her out for a walk", "emmaDateInvite"]
-    ]
-  },
-  "emmaCompliment": {
-    "text": "Emma blushes. 'I could show you more, sometime...' she offers, eyes lingering on you.",
-    "options": [
-      ["Agree to see more", "emmaInvite", [["function_Manage", "add", "heart", "1"]]],
-      ["Politely decline", "villageSquare"]
-    ]
-  },
+    "emmaIntroduction": {
+      "text": "Emma arranges flowers with obsessive care. 'Do you like flowers?' she asks, eyes glimmering.",
+      "options": [
+        ["Compliment her work", "emmaCompliment", [["condition", "charming", ">", "0"]]],
+        ["Ask about her flowers", "emmaFlowerTalk"],
+        ["Ask her out for a walk", "emmaDateInvite"]
+      ]
+    },
+    "emmaCompliment": {
+      "text": "Emma blushes. 'I could show you more, sometime...' she offers, eyes lingering on you.",
+      "options": [
+        ["Agree to see more", "emmaInvite", [["function_Manage", "add", "heart", "1"]]],
+        ["Politely decline", "villageSquare"]
+      ]
+    },
+    "emmaInvite": {
+      "text": "You agree to see more. 'I have something special to show you... later.'",
+      "options": [
+        ["Go with her now", "emmaArtObsess", [["function_Manage", "add", "heart", "2"]]],
+        ["Wait until later", "villageSquare", [["function_Manage", "add", "experience", "waited"]]],
+        ["Ask what she plans to show you", "emmaCuriosity"]
+      ]
+    },
+    "emmaCuriosity": {
+      "text": "Emma smiles mysteriously. 'It’s a surprise... but I promise you’ll love it.' Her tone sends a shiver down your spine.",
+      "options": [
+        ["Insist on knowing more", "emmaRevealHint"],
+        ["Agree to wait", "villageSquare", [["function_Manage", "add", "experience", "waited"]]]
+      ]
+    },
+    "emmaRevealHint": {
+      "text": "Emma hesitates, then leans closer. 'It’s something I’ve been working on for a long time... something just for you,' she whispers.",
+      "options": [
+        ["Ask her to explain", "emmaExplainHint"],
+        ["Leave it as a surprise", "villageSquare", [["function_Manage", "add", "experience", "curious"]]]
+      ]
+    },
+    "emmaExplainHint": {
+      "text": "'It’s... a collection of sorts. A collection that means a lot to me,' Emma says softly. 'But you’ll have to trust me.'",
+      "options": [
+        ["Press her for more details", "emmaDeeperHint"],
+        ["Decide to wait", "villageSquare", [["function_Manage", "add", "experience", "curious"]]]
+      ]
+    },
+    "emmaDeeperHint": {
+      "text": "Emma’s smile becomes unsettling. 'You’ll see... in time. Just know it’s something very close to my heart,' she says.",
+      "options": [
+        ["Agree to see it later", "villageSquare", [["function_Manage", "add", "experience", "patient"]]],
+        ["Insist on seeing it now", "emmaArtObsess"]
+      ]
+    },
+    "emmaArtObsess": {
+      "text": "Her studio is filled with portraits of you, getting progressively darker and more unsettling.",
+      "options": [
+        ["Confront Emma", "emmaEndConfront", [["function_Manage", "add", "fear", "1"]]],
+        ["Flee in terror", "villageSquare", [["function_Manage", "add", "experience", "fled"]]],
+        ["Pretend to admire her work", "emmaAdmireWork"]
+      ]
+    },
+    "emmaAdmireWork": {
+      "text": "You pretend to admire her work. Emma’s eyes light up, and she steps closer, her voice low. 'I knew you’d understand... we’re meant to be together,' she says.",
+      "options": [
+        ["Continue to play along", "emmaDeeperObsession"],
+        ["Gently express concern", "emmaConcern"]
+      ]
+    },
+    "emmaDeeperObsession": {
+      "text": "Emma’s fixation grows. 'No one else can appreciate you like I do... no one else deserves you,' she insists.",
+      "options": [
+        ["Express fear", "emmaEndConfront"],
+        ["Try to calm her down", "emmaCalmDown"],
+        ["Decide to leave", "villageSquare", [["function_Manage", "add", "experience", "calm"]]]
+      ]
+    },
+    "emmaCalmDown": {
+      "text": "You try to calm Emma down, but her grip tightens on your arm. 'Don’t leave me... please,' she pleads, her eyes desperate.",
+      "options": [
+        ["Agree to stay", "emmaStay"],
+        ["Break free and run", "villageSquare", [["function_Manage", "add", "experience", "fled"]]]
+      ]
+    },
+    "emmaStay": {
+      "text": "Emma relaxes slightly, her eyes still wide with emotion. 'Thank you... you don’t know how much this means to me,' she whispers.",
+      "options": [
+        ["Ask why she’s so afraid", "emmaRevealFear"],
+        ["Suggest she needs help", "emmaHelp"]
+      ]
+    },
+    "emmaRevealFear": {
+      "text": "'Because... because I’ve lost before,' Emma admits. 'And I can’t lose again. Not you,' she adds, her voice shaking.",
+      "options": [
+        ["Comfort her", "emmaComfort", [["function_Manage", "add", "experience", "comforted"]]],
+        ["Express unease", "emmaUnease"]
+      ]
+    },
+    "emmaHelp": {
+      "text": "Emma’s expression hardens. 'I don’t need help... I just need you,' she insists, her voice trembling with intensity.",
+      "options": [
+        ["Continue to press", "emmaPressHelp"],
+        ["Back off", "villageSquare", [["function_Manage", "add", "experience", "backed_off"]]]
+      ]
+    },
+    "emmaPressHelp": {
+      "text": "'Stop it!' Emma snaps, pulling away. 'You don’t understand... you’re mine!' she cries, tears forming in her eyes.",
+      "options": [
+        ["Apologize and comfort her", "emmaApologyComfort", [["function_Manage", "add", "experience", "apologized"]]],
+        ["Leave immediately", "villageSquare", [["function_Manage", "add", "experience", "left"]]]
+      ]
+    },
+    "emmaApologyComfort": {
+      "text": "You apologize and try to comfort Emma. She softens slightly, but her obsession remains. 'Just promise you won’t leave me,' she whispers.",
+      "options": [
+        ["Promise", "emmaPromise", [["function_Manage", "add", "experience", "promised"]]],
+        ["Refuse", "villageSquare", [["function_Manage", "add", "experience", "refused"]]]
+      ]
+    },
+    "emmaPromise": {
+      "text": "Emma smiles, but there’s a shadow of doubt in her eyes. 'Good... because if you did, I don’t know what I’d do,' she says quietly.",
+      "options": [
+        ["End the conversation", "villageSquare", [["function_Manage", "add", "experience", "promised"]]],
+        ["Ask what she means", "emmaDarkRevelation"]
+      ]
+    },
+    "emmaDarkRevelation": {
+      "text": "Emma’s eyes darken. 'I mean... I’d do anything to keep you with me. Anything,' she says, her voice chilling.",
+      "options": [
+        ["Express fear", "emmaEndConfront"],
+        ["Attempt to calm her down", "emmaReassurance"]
+      ]
+    },
+    "emmaReassurance": {
+      "text": "You try to reassure Emma, but her expression remains tense. 'Just stay close to me... and everything will be fine,' she says.",
+      "options": [
+        ["Agree", "villageSquare", [["function_Manage", "add", "experience", "reassured"]]],
+        ["Refuse and back away", "villageSquare", [["function_Manage", "add", "experience", "refused"]]]
+      ]
+    },
+    "emmaEndConfront": {
+      "text": "Emma’s eyes darken. 'No one else can have you!' she yells, lunging at you with shears.",
+      "options": [
+        ["Fight her off", "emmaFinalFight", [["function_Manage", "add", "strength", "1"]]],
+        ["Run for your life", "villageSquare", [["function_Manage", "add", "experience", "escaped"]]]
+      ]
+    },
+    "emmaFinalFight": {
+      "text": "You fight Emma off and escape, but her obsession isn’t over...",
+      "options": [
+        ["Escape the village", "endGame", [["function_End", "EmmaEnd1"]]],
+        ["Confront her again", "villageSquare", [["function_Manage", "add", "experience", "confronted"]]]
+      ]
+    },
   "emmaFlowerTalk": {
     "text": "Emma explains the meanings of each flower. Her descriptions seem more like people than plants.",
     "options": [
@@ -67,34 +203,6 @@
     "options": [
       ["Agree to spend time", "emmaInvite"],
       ["Politely decline", "villageSquare"]
-    ]
-  },
-  "emmaInvite": {
-    "text": "You agree to see more. 'I have something special to show you... later.'",
-    "options": [
-      ["Go with her now", "emmaArtObsess", [["function_Manage", "add", "heart", "2"]]],
-      ["Wait until later", "villageSquare"]
-    ]
-  },
-  "emmaArtObsess": {
-    "text": "Her studio is filled with portraits of you, getting progressively darker and more unsettling.",
-    "options": [
-      ["Confront Emma", "emmaEndConfront", [["function_Manage", "add", "fear", "1"]]],
-      ["Flee in terror", "villageSquare"]
-    ]
-  },
-  "emmaEndConfront": {
-    "text": "Emma's eyes darken. 'No one else can have you!' she yells, lunging at you with shears.",
-    "options": [
-      ["Fight her off", "emmaFinalFight", [["function_Manage", "add", "strength", "1"]]],
-      ["Run for your life", "villageSquare"]
-    ]
-  },
-  "emmaFinalFight": {
-    "text": "You fight Emma off and escape, but her obsession isn't over...",
-    "options": [
-      ["Escape the village", "endGame", [["function_End", "EmmaEnd1"]]],
-      ["Confront her again", "villageSquare"]
     ]
   },
   "emmaDateInvite": {
@@ -158,13 +266,6 @@
     "options": [
       ["Reassure her", "emmaReassurance"],
       ["Ask why she feels that way", "emmaParanoia"]
-    ]
-  },
-  "emmaReassurance": {
-    "text": "Emma seems relieved. 'Good... because I don't know what I'd do if you left me,' she mutters.",
-    "options": [
-      ["Change the subject", "villageSquare"],
-      ["Ask what she means", "emmaDarkThoughts"]
     ]
   },
   "emmaDarkThoughts": {
