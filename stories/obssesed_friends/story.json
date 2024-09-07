@@ -1,109 +1,1234 @@
 {
-      "Start": {
-        "text": "You arrive in the village of Hallowvale, a quiet and isolated place. As a returning local or new arrival, the village holds a mix of charm and unease. The people seem familiar, yet there’s something unsettling beneath the surface.",
-        "options": [
-          ["Explore the village square", "villageSquare"]
-        ]
-      },
-      "villageSquare": {
-        "text": "The village square is bustling with activity. Here, you meet various locals, each with their own quirks and secrets. Who will you talk to?",
-        "options": [
-          ["Talk to Emma, the florist", "emmaIntroduction"],
-          ["Talk to Marcus, the blacksmith", "marcusIntroduction"],
-          ["Talk to Lily, the librarian", "lilyIntroduction"],
-          ["Talk to John, the fisherman", "johnIntroduction"]
-        ]
-      },
-      "emmaIntroduction": {
-        "text": "Emma, the florist, is arranging flowers with obsessive care. Her beauty hides a dark intensity. 'Do you like flowers?' she asks, eyes glimmering.",
-        "options": [
-          ["Compliment her work", "emmaCompliment"],
-          ["Ask about her flower arrangements", "emmaFlowerTalk"]
-        ]
-      },
-      "emmaCompliment": {
-        "text": "Emma blushes at your compliment. 'Thank you,' she says, 'I work hard on them. I could show you more sometime... if you'd like.' Her eyes linger on you a little too long.",
-        "options": [
-          ["Agree to see more", "emmaInvite"],
-          ["Politely decline", "villageSquare"]
-        ]
-      },
-      "emmaFlowerTalk": {
-        "text": "Emma begins explaining the meanings behind each flower she arranges, but the way she talks about them seems more like she's describing people rather than plants.",
-        "options": [
-          ["Continue listening", "emmaDeeperTalk"],
-          ["Excuse yourself", "villageSquare"]
-        ]
-      },
-      "emmaInvite": {
-        "text": "You agree to see more of Emma's work. She gives you a sly smile, 'I have something special I want to show you. Maybe later... when it's quieter.'",
-        "options": [
-          ["Go with her now", "emmaArtObsess"],
-          ["Wait until later", "villageSquare"]
-        ]
-      },
-      "emmaArtObsess": {
-        "text": "You enter Emma's studio, only to find it filled with portraits of yourself. At first, they appear normal—perhaps even flattering—but as you move deeper into the room, the images grow darker. Paintings of you bleeding, lying lifeless, or bound in chains cover the walls.<br><br>'I thought you would like them,' Emma whispers. Her breath on your neck sends chills down your spine.",
-        "options": [
-          ["Confront Emma about the disturbing images", "emmaEndConfront"],
-          ["Flee the studio in terror", "villageSquare"]
-        ]
-      },
-      "marcusIntroduction": {
-        "text": "Marcus, the blacksmith, wipes sweat from his brow as he works. 'New face around here, huh?' His strong presence is undeniable, but there’s something unsettling in his intensity.",
-        "options": [
-          ["Ask about his work", "marcusTalkWork"],
-          ["Compliment his strength", "marcusCompliment"]
-        ]
-      },
-      "marcusCompliment": {
-        "text": "Marcus smirks, 'Strength's all I've got, but it gets the job done.' He seems proud, but there's a hint of violence in his tone.",
-        "options": [
-          ["Ask about the village", "marcusVillageTalk"],
-          ["Leave", "villageSquare"]
-        ]
-      },
-      "lilyIntroduction": {
-        "text": "Lily, the librarian, watches you with keen interest as you enter the library. Her eyes are calculating, as though she’s already forming opinions about you.",
-        "options": [
-          ["Ask about the library", "lilyLibraryTalk"],
-          ["Talk about books", "lilyBooksTalk"]
-        ]
-      },
-      "johnIntroduction": {
-        "text": "John, the fisherman, stands quietly by the lake, casting his line. His quiet demeanor hides a deep intensity.",
-        "options": [
-          ["Ask about fishing", "johnFishingTalk"],
-          ["Compliment his catch", "johnCatchTalk"]
-        ]
-      },
-      "emmaEndConfront": {
-        "text": "Emma's eyes darken as you confront her about the disturbing paintings. 'You don’t understand!' she yells. 'No one else can have you!' Before you can react, she lunges toward you with a pair of garden shears.",
-        "options": [
-          ["Fight her off", "emmaFinalFight"],
-          ["Run for your life", "villageSquare"]
-        ]
-      },
-      "emmaFinalFight": {
-        "text": "You barely manage to fight Emma off. She stumbles, dropping the shears, and you make your escape, but her obsession is far from over...",
-        "options": [
-          ["Escape the village", "endGame"],
-          ["Confront her again", "villageSquare"]
-        ]
-      },
-      "johnFishingTalk": {
-        "text": "John quietly explains his fishing methods, though his words seem distant, as if his mind is elsewhere.",
-        "options": [
-          ["Listen closely", "johnReveal"],
-          ["Leave", "villageSquare"]
-        ]
-      },
-      "johnReveal": {
-        "text": "John's quiet voice drops as he reveals a dark secret: some who come to this village never leave. 'I don’t talk much, but I see everything,' he whispers.",
-        "options": [
-          ["Ask what he means", "johnMoreSecrets"],
-          ["Leave in silence", "villageSquare"]
-        ]
-    }
+  "Start": {
+    "text": "You arrive in the village of Hallowvale, a quiet and isolated place. The villagers seem familiar yet unsettling. <br><br> Before exploring, choose your character traits. They will affect your interactions in the village.",
+    "options": [
+      ["Charming and Charismatic", "chooseCharming", [["function_Manage", "set", "trait", "charming"]]],
+      ["Cautious and Observant", "chooseCautious", [["function_Manage", "set", "trait", "cautious"]]],
+      ["Strong and Resilient", "chooseStrong", [["function_Manage", "set", "trait", "strong"]]]
+    ]
+  },
+  "chooseCharming": {
+    "text": "You are Charming and Charismatic. Your presence draws others to you, but be wary of their intentions.",
+    "options": [["Proceed to the village", "villageSquare"]]
+  },
+  "chooseCautious": {
+    "text": "You are Cautious and Observant. You notice things others might miss, but your demeanor may make some uneasy.",
+    "options": [["Proceed to the village", "villageSquare"]]
+  },
+  "chooseStrong": {
+    "text": "You are Strong and Resilient. Your strength is apparent, but it might provoke or attract unwanted attention.",
+    "options": [["Proceed to the village", "villageSquare"]]
+  },
+  "villageSquare": {
+    "text": "The village square is bustling, but no one seems approachable at first. Several paths lead to different areas.",
+    "options": [
+      ["Visit the flower shop", "flowerShop"],
+      ["Check the forge", "blacksmithForge"],
+      ["Enter the library", "villageLibrary"],
+      ["Walk toward the lake", "lakeArea"],
+      ["Explore the old mill", "oldMill"]
+    ]
+  },
+  "flowerShop": {
+    "text": "You enter the flower shop, filled with the scent of fresh blooms. Emma, the florist, is here.",
+    "options": [["Talk to Emma", "emmaIntroduction"], ["Leave the shop", "villageSquare"]]
+  },
+  "emmaIntroduction": {
+    "text": "Emma arranges flowers with obsessive care. 'Do you like flowers?' she asks, eyes glimmering.",
+    "options": [
+      ["Compliment her work", "emmaCompliment", [["condition", "charming", ">", "0"]]],
+      ["Ask about her flowers", "emmaFlowerTalk"],
+      ["Ask her out for a walk", "emmaDateInvite"]
+    ]
+  },
+  "emmaCompliment": {
+    "text": "Emma blushes. 'I could show you more, sometime...' she offers, eyes lingering on you.",
+    "options": [
+      ["Agree to see more", "emmaInvite", [["function_Manage", "add", "heart", "1"]]],
+      ["Politely decline", "villageSquare"]
+    ]
+  },
+  "emmaFlowerTalk": {
+    "text": "Emma explains the meanings of each flower. Her descriptions seem more like people than plants.",
+    "options": [
+      ["Continue listening", "emmaDeeperTalk"],
+      ["Excuse yourself", "villageSquare"]
+    ]
+  },
+  "emmaDeeperTalk": {
+    "text": "Her gaze becomes intense. 'I think these flowers suit you... because they mean devotion.'",
+    "options": [
+      ["Change the subject", "villageSquare"],
+      ["Ask what she means", "emmaReveal", [["condition", "heart", ">", "0"]]]
+    ]
+  },
+  "emmaReveal": {
+    "text": "Emma smiles, a bit too wide. 'Maybe you'll find out... if you spend more time with me.'",
+    "options": [
+      ["Agree to spend time", "emmaInvite"],
+      ["Politely decline", "villageSquare"]
+    ]
+  },
+  "emmaInvite": {
+    "text": "You agree to see more. 'I have something special to show you... later.'",
+    "options": [
+      ["Go with her now", "emmaArtObsess", [["function_Manage", "add", "heart", "2"]]],
+      ["Wait until later", "villageSquare"]
+    ]
+  },
+  "emmaArtObsess": {
+    "text": "Her studio is filled with portraits of you, getting progressively darker and more unsettling.",
+    "options": [
+      ["Confront Emma", "emmaEndConfront", [["function_Manage", "add", "fear", "1"]]],
+      ["Flee in terror", "villageSquare"]
+    ]
+  },
+  "emmaEndConfront": {
+    "text": "Emma's eyes darken. 'No one else can have you!' she yells, lunging at you with shears.",
+    "options": [
+      ["Fight her off", "emmaFinalFight", [["function_Manage", "add", "strength", "1"]]],
+      ["Run for your life", "villageSquare"]
+    ]
+  },
+  "emmaFinalFight": {
+    "text": "You fight Emma off and escape, but her obsession isn't over...",
+    "options": [
+      ["Escape the village", "endGame", [["function_End", "EmmaEnd1"]]],
+      ["Confront her again", "villageSquare"]
+    ]
+  },
+  "emmaDateInvite": {
+    "text": "Emma seems surprised but delighted by your invitation. 'I'd love to! How about a picnic by the lake?'",
+    "options": [
+      ["Agree to the picnic", "emmaPicnic", [["function_Manage", "add", "heart", "1"]]],
+      ["Suggest a different activity", "emmaAlternateDate"]
+    ]
+  },
+  "emmaPicnic": {
+    "text": "At the lake, Emma is charming, but her eyes are always on you, almost too focused. 'I brought your favorite snacks,' she says. How did she know?",
+    "options": [
+      ["Enjoy the date", "emmaEnjoyDate"],
+      ["Ask how she knew your favorite", "emmaSuspicion"]
+    ]
+  },
+  "emmaEnjoyDate": {
+    "text": "You try to enjoy the date, but Emma's constant attention makes you feel uneasy.",
+    "options": [
+      ["End the date", "villageSquare"],
+      ["Ask Emma about her interests", "emmaInterests"]
+    ]
+  },
+  "emmaInterests": {
+    "text": "Emma's face lights up as she talks about her flowers. 'I love arranging them... almost as much as I love knowing everything about you,' she giggles.",
+    "options": [
+      ["Smile politely", "emmaSmileResponse"],
+      ["Probe further", "emmaProbeInterests"]
+    ]
+  },
+  "emmaSmileResponse": {
+    "text": "Emma seems pleased with your reaction, but her gaze remains fixated on you, unwavering.",
+    "options": [
+      ["Change the subject", "villageSquare"],
+      ["Continue to show interest", "emmaFlowerGift"]
+    ]
+  },
+  "emmaProbeInterests": {
+    "text": "Emma's expression shifts slightly, her smile more forced. 'Why do you want to know so much about me?' she asks, her voice tense.",
+    "options": [
+      ["Apologize", "emmaApologize"],
+      ["Ask if she is okay", "emmaConcern"]
+    ]
+  },
+  "emmaApologize": {
+    "text": "Emma's smile returns, but there's a hint of something darker in her eyes. 'It's fine... I just want you to be mine, that's all.'",
+    "options": [
+      ["Laugh it off", "emmaLaughOff"],
+      ["End the date", "villageSquare"]
+    ]
+  },
+  "emmaLaughOff": {
+    "text": "Emma laughs with you, but there's a sharp edge to her voice. 'Just don't forget that,' she whispers.",
+    "options": [
+      ["End the date", "villageSquare"],
+      ["Ask her about her past", "emmaPast"]
+    ]
+  },
+  "emmaConcern": {
+    "text": "Emma's face softens. 'I'm fine... I just don't want to lose you,' she says quietly.",
+    "options": [
+      ["Reassure her", "emmaReassurance"],
+      ["Ask why she feels that way", "emmaParanoia"]
+    ]
+  },
+  "emmaReassurance": {
+    "text": "Emma seems relieved. 'Good... because I don't know what I'd do if you left me,' she mutters.",
+    "options": [
+      ["Change the subject", "villageSquare"],
+      ["Ask what she means", "emmaDarkThoughts"]
+    ]
+  },
+  "emmaDarkThoughts": {
+    "text": "Emma's eyes gleam. 'I'd do anything to keep you with me,' she whispers. 'Anything.'",
+    "options": [
+      ["Feel uneasy", "emmaUneasy"],
+      ["End the date early", "villageSquare"]
+    ]
+  },
+  "emmaParanoia": {
+    "text": "Emma frowns slightly. 'You don't understand... there are people who want to take you away from me,' she insists.",
+    "options": [
+      ["Ask who she means", "emmaRevealEnemies"],
+      ["Dismiss her worries", "emmaDismiss"]
+    ]
+  },
+  "emmaRevealEnemies": {
+    "text": "Emma's voice drops to a whisper. 'They all want to take you... but I won't let them,' she says, her grip tightening on your hand.",
+    "options": [
+      ["Calm her down", "emmaCalm"],
+      ["Confront her paranoia", "emmaConfrontParanoia"]
+    ]
+  },
+  "emmaCalm": {
+    "text": "You try to calm Emma down. She takes a deep breath, but her eyes still dart around, searching for unseen threats.",
+    "options": [
+      ["Continue the date", "emmaPicnic"],
+      ["End the date early", "villageSquare"]
+    ]
+  },
+  "emmaConfrontParanoia": {
+    "text": "Emma's eyes widen in surprise. 'You're against me too, aren't you?' she whispers. 'I won't let you leave!'",
+    "options": [
+      ["Try to reason with her", "emmaReason"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "emmaReason": {
+    "text": "Emma's breathing becomes erratic, but she seems to be listening. 'I just... I just love you so much,' she pleads.",
+    "options": [
+      ["Reassure her", "emmaEnd"],
+      ["Back away slowly", "villageSquare"]
+    ]
+  },
+  "emmaEnd": {
+    "text": "Emma seems calmer, but you know her obsession isn't gone. 'I'll always be here, watching over you,' she whispers.",
+    "options": [
+      ["End the interaction", "villageSquare"],
+      ["Ask what she means", "emmaFinalReveal"]
+    ]
+  },
+  "emmaFinalReveal": {
+    "text": "Emma's eyes sparkle with an unsettling intensity. 'I've been watching you for a long time... I know everything about you.'",
+    "options": [
+      ["Confront her", "emmaConfrontation"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "emmaConfrontation": {
+    "text": "Emma's face twists in anger. 'You don't understand! No one else can have you!' she screams, pulling out a knife.",
+    "options": [
+      ["Fight her", "emmaEndFight"],
+      ["Flee the shop", "villageSquare"]
+    ]
+  },
+  "emmaEndFight": {
+    "text": "You manage to fend off Emma, but she vows to return. 'This isn't over,' she snarls.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEnd1"]]]
+    ]
+  },
+  "emmaEnd1": {
+    "text": "Emma becomes a shadow, following you wherever you go, her obsession only growing.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEnd2"]]]
+    ]
+  },
+  "emmaEnd2": {
+    "text": "Emma finally snaps, kidnapping you and locking you in her home, convinced this is the only way to keep you safe.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEnd3"]]]
+    ]
+  },
+  "emmaEnd3": {
+    "text": "As days pass, Emma's obsession grows darker. You realize too late that she has no intention of ever letting you leave.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEnd4"]]]
+    ]
+  },
+  "emmaEnd4": {
+    "text": "Emma begins to eliminate anyone she sees as a threat, one by one, until only you and she remain.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEnd5"]]]
+    ]
+  },
+  "emmaEnd5": {
+    "text": "In a final confrontation, you manage to escape, but Emma's shadow haunts you forever.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "EmmaEndFinal"]]]
+    ]
+  },
+  "blacksmithForge": {
+    "text": "You approach the forge. Marcus, the blacksmith, is hard at work, his muscles straining with each strike.",
+    "options": [
+      ["Talk to Marcus", "marcusIntroduction"],
+      ["Leave the forge", "villageSquare"]
+    ]
+  },
+  "marcusIntroduction": {
+    "text": "Marcus notices you. 'New around here?' he asks, his gaze lingering.",
+    "options": [
+      ["Ask about his work", "marcusTalkWork"],
+      ["Compliment his strength", "marcusCompliment"],
+      ["Ask him to teach you blacksmithing", "marcusDateInvite"]
+    ]
+  },
+  "marcusTalkWork": {
+    "text": "Marcus tells you about his craft. 'It's tough work, but it's honest.' His hands are scarred from years of labor.",
+    "options": [
+      ["Show interest in blacksmithing", "marcusOfferTraining"],
+      ["Ask about his past", "marcusPast"]
+    ]
+  },
+  "marcusOfferTraining": {
+    "text": "'I could show you a thing or two,' Marcus offers. 'If you're up for it.'",
+    "options": [
+      ["Accept his offer", "marcusTraining", [["function_Manage", "add", "strength", "1"]]],
+      ["Politely decline", "villageSquare"]
+    ]
+  },
+  "marcusTraining": {
+    "text": "Marcus is a tough but fair teacher. You feel your muscles strain under the weight of the hammer. 'You're doing good,' he grunts, approvingly.",
+    "options": [
+      ["Continue training", "marcusTraining2"],
+      ["Take a break", "villageSquare"]
+    ]
+  },
+  "marcusTraining2": {
+    "text": "Marcus seems impressed with your dedication. 'You're stronger than you look,' he admits.",
+    "options": [
+      ["Ask him to go for a drink", "marcusPubDate"],
+      ["End the training", "villageSquare"]
+    ]
+  },
+  "marcusPubDate": {
+    "text": "At the village pub, Marcus relaxes a bit. 'It's nice to unwind,' he admits, taking a sip of his drink.",
+    "options": [
+      ["Ask about his family", "marcusFamilyTalk"],
+      ["Challenge him to a drinking game", "marcusDrinkingGame"]
+    ]
+  },
+  "marcusFamilyTalk": {
+    "text": "Marcus' expression darkens. 'I don't talk much about my past,' he says, but there’s a flicker of pain in his eyes.",
+    "options": [
+      ["Press for details", "marcusFamilyReveal"],
+      ["Change the subject", "marcusPubDate"]
+    ]
+  },
+  "marcusFamilyReveal": {
+    "text": "'My family... they were taken from me,' he mutters. 'That's why I keep to myself.'",
+    "options": [
+      ["Express sympathy", "marcusComfort"],
+      ["Ask how it happened", "marcusTragedyDetail"]
+    ]
+  },
+  "marcusComfort": {
+    "text": "You express sympathy, and Marcus seems to soften slightly. 'Thanks,' he says quietly.",
+    "options": [
+      ["Ask to learn more about him", "marcusLearnMore"],
+      ["Suggest leaving the pub", "villageSquare"]
+    ]
+  },
+  "marcusDrinkingGame": {
+    "text": "Marcus grins. 'You're on!' he laughs. The game is competitive, and you feel the tension rise with each round.",
+    "options": [
+      ["Let him win", "marcusLetWin"],
+      ["Try to win", "marcusTryWin"]
+    ]
+  },
+  "marcusLetWin": {
+    "text": "Marcus seems pleased. 'You know when to pick your battles,' he says with a smirk.",
+    "options": [
+      ["Compliment his strength", "marcusCompliment"],
+      ["Suggest another game", "marcusRematch"]
+    ]
+  },
+  "marcusTryWin": {
+    "text": "You give it your all, and Marcus seems to enjoy the challenge. 'I like your spirit,' he admits.",
+    "options": [
+      ["Continue playing", "marcusDrinkingGame2"],
+      ["Suggest stopping", "villageSquare"]
+    ]
+  },
+  "marcusDrinkingGame2": {
+    "text": "The game continues, and you feel the world spin. Marcus catches you as you stumble. 'I've got you,' he says softly.",
+    "options": [
+      ["Thank him", "marcusThankYou"],
+      ["Push him away", "marcusPushAway"]
+    ]
+  },
+  "marcusThankYou": {
+    "text": "Marcus smiles. 'You're different... I like that,' he admits.",
+    "options": [
+      ["Ask what he means", "marcusConfession"],
+      ["End the evening", "villageSquare"]
+    ]
+  },
+  "marcusPushAway": {
+    "text": "Marcus frowns but steps back. 'I was just trying to help,' he says defensively.",
+    "options": [
+      ["Apologize", "marcusApologize"],
+      ["Walk away", "villageSquare"]
+    ]
+  },
+  "marcusConfession": {
+    "text": "'I don't meet many people who understand me,' Marcus confesses. 'Maybe we could spend more time together?'",
+    "options": [
+      ["Agree to another date", "marcusEveningDate"],
+      ["Politely decline", "villageSquare"]
+    ]
+  },
+  "marcusApologize": {
+    "text": "You apologize, and Marcus seems to relax a bit. 'It's fine,' he mutters. 'Just... be careful.'",
+    "options": [
+      ["Ask what he means", "marcusWarning"],
+      ["Leave", "villageSquare"]
+    ]
+  },
+  "marcusWarning": {
+    "text": "'This village... it's not always safe,' Marcus warns. 'Stick close to me, and you'll be fine.'",
+    "options": [
+      ["Agree to stay close", "marcusProtection"],
+      ["Refuse", "villageSquare"]
+    ]
+  },
+  "marcusProtection": {
+    "text": "Marcus nods, pleased. 'Good choice,' he says. 'I'll keep you safe.'",
+    "options": [
+      ["Ask about the dangers", "marcusVillageSecrets"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "marcusVillageSecrets": {
+    "text": "Marcus looks around before speaking in a low voice. 'There are things... people here don't want you to know.'",
+    "options": [
+      ["Ask for more details", "marcusRevealSecrets"],
+      ["Stay silent", "villageSquare"]
+    ]
+  },
+  "marcusRevealSecrets": {
+    "text": "'I can't say more here,' Marcus whispers. 'Meet me later, at the old mill.'",
+    "options": [
+      ["Agree to meet later", "marcusOldMill"],
+      ["Refuse", "villageSquare"]
+    ]
+  },
+  "marcusOldMill": {
+    "text": "At the old mill, Marcus seems tense. 'I brought you here to keep you safe,' he insists.",
+    "options": [
+      ["Trust him", "marcusTrust"],
+      ["Confront him about his behavior", "marcusConfrontation"]
+    ]
+  },
+  "marcusTrust": {
+    "text": "Marcus relaxes a bit. 'Good... you need to trust me if we're going to survive here.'",
+    "options": [
+      ["Ask what he means", "marcusEndGame"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "marcusConfrontation": {
+    "text": "Marcus' eyes darken. 'Why don't you trust me?' he demands. 'I'm only trying to protect you.'",
+    "options": [
+      ["Explain your concerns", "marcusExplain"],
+      ["Back away slowly", "villageSquare"]
+    ]
+  },
+  "marcusExplain": {
+    "text": "You explain your concerns, and Marcus seems to soften. 'I get it... but I'm not the enemy here,' he insists.",
+    "options": [
+      ["Ask for proof", "marcusProof"],
+      ["Leave", "villageSquare"]
+    ]
+  },
+  "marcusProof": {
+    "text": "'Proof? What proof do you need?' Marcus asks, frustrated. 'Just trust me!'",
+    "options": [
+      ["Demand answers", "marcusFinalConfrontation"],
+      ["Agree to trust him", "marcusTrust"]
+    ]
+  },
+  "marcusFinalConfrontation": {
+    "text": "Marcus snaps. 'If you won't trust me, then you're against me!' He lunges toward you, rage in his eyes.",
+    "options": [
+      ["Fight back", "marcusEndFight"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "marcusEndFight": {
+    "text": "In a final showdown, you manage to fend off Marcus, but his obsession has reached a dangerous level.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "MarcusEnd1"]]]
+    ]
+  },
+  "marcusEnd": {
+    "text": "Marcus' obsession grows uncontrollable. 'You belong to me,' he declares, locking you away in his forge.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "MarcusEnd2"]]]
+    ]
+  },
+  "marcusEnd2": {
+    "text": "After days of trying to escape, you realize Marcus' obsession is deeper than you thought. He has no intention of letting you go.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "MarcusEnd3"]]]
+    ]
+  },
+  "marcusEnd3": {
+    "text": "Marcus's protective nature becomes suffocating. He isolates you from the village, convinced he's the only one who can keep you safe.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "MarcusEnd4"]]]
+    ]
+  },
+  "marcusEnd4": {
+    "text": "Marcus reveals a hidden past that intertwines with yours, making escape impossible.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "MarcusEnd5"]]]
+    ]
+  },
+  "villageLibrary": {
+    "text": "You enter the quiet library, the smell of old books in the air. Lily, the librarian, is watching you intently from behind a stack of books.",
+    "options": [
+      ["Talk to Lily", "lilyIntroduction"],
+      ["Approach the shy boy", "xenIntroduction"],
+      ["Leave the library", "villageSquare"]
+    ]
+  },
+  "lilyIntroduction": {
+    "text": "Lily smiles as you approach. 'Looking for something specific?' she asks, her voice calm but her eyes keenly observing you.",
+    "options": [
+      ["Ask for a book recommendation", "lilyBookRecommend", [["function_Manage", "add", "talkedToLily", "1"]]],
+      ["Ask about her", "lilyPersonalQuestion"],
+      ["Invite her for a walk", "lilyDateInvite"]
+    ]
+  },
+  "lilyBookRecommend": {
+    "text": "Lily nods thoughtfully. 'I have just the book for you,' she says, handing you a book titled 'The Art of Manipulation.' Her smile is enigmatic.",
+    "options": [
+      ["Thank her and accept the book", "lilyBookDiscussion"],
+      ["Question the choice", "lilyQuestionChoice"]
+    ]
+  },
+  "lilyPersonalQuestion": {
+    "text": "Lily seems pleased. 'Ah, curious about me? I'm just someone who enjoys the power of knowledge... and the control it gives.'",
+    "options": [
+      ["Ask why control is important to her", "lilyControlImportance"],
+      ["Change the subject", "villageLibrary"]
+    ]
+  },
+  "lilyControlImportance": {
+    "text": "Lily's smile widens. 'Control keeps chaos at bay. Don't you agree?' Her tone suggests she won't take no for an answer.",
+    "options": [
+      ["Agree with her", "lilyAgree"],
+      ["Disagree", "lilyDisagree"]
+    ]
+  },
+  "lilyAgree": {
+    "text": "Lily's eyes sparkle with approval. 'I knew you were intelligent,' she says, stepping closer.",
+    "options": [
+      ["Ask what she means", "lilyExplainControl"],
+      ["Compliment her intelligence", "lilyFlattered"]
+    ]
+  },
+  "lilyDisagree": {
+    "text": "Lily's smile falters, but she quickly recovers. 'That's... an interesting perspective,' she replies, but her eyes narrow slightly.",
+    "options": [
+      ["Ask why she seems upset", "lilyCalmDown"],
+      ["Change the topic", "villageLibrary"]
+    ]
+  },
+  "lilyCalmDown": {
+    "text": "'Oh, I'm not upset,' Lily assures you, her voice smooth. 'I just find differing opinions so... fascinating.'",
+    "options": [
+      ["Continue discussing", "lilyBookDiscussion"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "lilyFlattered": {
+    "text": "Lily looks genuinely pleased. 'Flattery will get you everywhere,' she laughs. 'Why don't you stay a while?'",
+    "options": [
+      ["Accept her invitation", "lilyExtendedTalk"],
+      ["Decline and leave", "villageSquare"]
+    ]
+  },
+  "lilyExtendedTalk": {
+    "text": "Lily leads you to a cozy corner of the library. 'So, tell me more about yourself,' she says, her eyes never leaving yours.",
+    "options": [
+      ["Open up about your past", "lilyBonding"],
+      ["Keep it vague", "lilySuspicion"]
+    ]
+  },
+  "lilyBonding": {
+    "text": "Lily listens intently, nodding at every word. 'You're very intriguing,' she comments. 'I think we could learn a lot from each other.'",
+    "options": [
+      ["Agree", "lilyMutualLearning"],
+      ["Ask what she wants to learn", "lilyIntentions"]
+    ]
+  },
+  "lilySuspicion": {
+    "text": "Lily's expression becomes unreadable. 'Not ready to share? That's okay. I have ways of finding out,' she says cryptically.",
+    "options": [
+      ["Ask what she means", "lilyThreat"],
+      ["Change the subject", "villageLibrary"]
+    ]
+  },
+  "lilyThreat": {
+    "text": "'Oh, don't worry,' Lily smiles. 'I'm just very good at reading people.'",
+    "options": [
+      ["Feel uneasy", "lilyUneasy"],
+      ["Laugh it off", "lilyLaughOff"]
+    ]
+  },
+  "lilyUneasy": {
+    "text": "Lily notices your discomfort. 'Did I say something wrong?' she asks innocently, but her eyes are studying your every move.",
+    "options": [
+      ["Reassure her", "lilyReassure"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "lilyReassure": {
+    "text": "Lily smiles softly. 'Good... I wouldn't want to upset you. You mean a lot to me already,' she says, her voice almost tender.",
+    "options": [
+      ["Ask what she means", "lilyPossessiveHint"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "lilyPossessiveHint": {
+    "text": "'I mean, I just enjoy your company... maybe a bit too much,' she says with a slight smile. 'But that's not a problem, is it?'",
+    "options": [
+      ["Say it's fine", "lilyDateInvite"],
+      ["Express concern", "lilyConcern"]
+    ]
+  },
+  "lilyDateInvite": {
+    "text": "Lily brightens up. 'Wonderful! How about a visit to my favorite reading spot in the woods?' she suggests.",
+    "options": [
+      ["Agree to the date", "lilyWoodsDate", [["function_Manage", "add", "heart", "1"]]],
+      ["Suggest a different activity", "lilyAlternateDate"]
+    ]
+  },
+  "lilyWoodsDate": {
+    "text": "You agree to meet Lily at her reading spot. The walk through the woods is quiet, and Lily seems in her element, smiling mysteriously.",
+    "options": [
+      ["Ask why she likes the woods", "lilyWoodsTalk"],
+      ["Remain silent", "lilyObserve"]
+    ]
+  },
+  "lilyWoodsTalk": {
+    "text": "'The woods are like a great book,' Lily explains. 'Full of secrets, and sometimes... things you'd rather not see.'",
+    "options": [
+      ["Ask what she means", "lilySecretsHint"],
+      ["Change the subject", "lilyWoodsDateEnd"]
+    ]
+  },
+  "lilySecretsHint": {
+    "text": "'There are things I know about people here... things they don't want others to know,' she says softly. 'Including you.'",
+    "options": [
+      ["Ask what she knows", "lilyRevealSecrets"],
+      ["Stay silent", "lilyMysteriousSmile"]
+    ]
+  },
+  "lilyRevealSecrets": {
+    "text": "Lily gives a small smile. 'Oh, just things... like why you came here, what you're running from,' she hints.",
+    "options": [
+      ["Ask how she knows", "lilyIntelligence"],
+      ["Try to dismiss it", "lilyDismiss"]
+    ]
+  },
+  "lilyIntelligence": {
+    "text": "'I read people,' she says simply. 'And I've read you like an open book.'",
+    "options": [
+      ["Feel uneasy", "lilyUneaseIncrease"],
+      ["Challenge her", "lilyChallenge"]
+    ]
+  },
+  "lilyUneaseIncrease": {
+    "text": "You feel a chill down your spine. Lily just smiles knowingly. 'No need to be afraid... unless you have something to hide.'",
+    "options": [
+      ["Ask what she means", "lilyConfrontation"],
+      ["End the date", "villageSquare"]
+    ]
+  },
+  "lilyChallenge": {
+    "text": "Lily seems to enjoy the challenge. 'You're clever... but I'm always one step ahead,' she replies confidently.",
+    "options": [
+      ["Ask her to prove it", "lilyProve"],
+      ["Back down", "lilyWithdraw"]
+    ]
+  },
+  "lilyProve": {
+    "text": "Lily's smile widens. 'I don't need to prove anything... you'll see,' she says cryptically.",
+    "options": [
+      ["End the date", "villageSquare"],
+      ["Ask her again", "lilyRevealIntentions"]
+    ]
+  },
+  "lilyRevealIntentions": {
+    "text": "'I'm very interested in you,' she finally admits. 'And I don't intend to let anyone take you from me.'",
+    "options": [
+      ["Feel uncomfortable", "lilyEnd"],
+      ["Laugh it off", "lilyLaughItOff"]
+    ]
+  },
+  "lilyLaughItOff": {
+    "text": "Lily laughs with you, but her eyes never leave yours. 'I'm serious, though. No one will take you from me.'",
+    "options": [
+      ["End the conversation", "villageSquare"],
+      ["Probe further", "lilyDeeperTalk"]
+    ]
+  },
+  "lilyDeeperTalk": {
+    "text": "Lily's expression becomes more intense. 'I could make anyone who tries to take you regret it,' she whispers.",
+    "options": [
+      ["Ask why", "lilyWhy"],
+      ["End the date", "villageSquare"]
+    ]
+  },
+  "lilyWhy": {
+    "text": "'Because you're mine,' she says simply, a possessive smile spreading across her face.",
+    "options": [
+      ["Confront her", "lilyConfrontationFinal"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "lilyConfrontationFinal": {
+    "text": "Lily's eyes narrow. 'You think you can leave? You're too interesting to let go,' she says, blocking your path.",
+    "options": [
+      ["Try to escape", "lilyEscapeAttempt"],
+      ["Reason with her", "lilyEndGame"]
+    ]
+  },
+  "lilyEscapeAttempt": {
+    "text": "You try to escape, but Lily is already ahead of you. 'Did you really think it would be that easy?' she taunts.",
+    "options": [
+      ["Fight her", "lilyFight"],
+      ["Submit", "lilyCapture"]
+    ]
+  },
+  "lilyFight": {
+    "text": "You fight back, but Lily uses her knowledge against you. 'I know your weaknesses,' she whispers in your ear.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEnd1"]]]
+    ]
+  },
+  "lilyCapture": {
+    "text": "Lily captures you, locking you in a room filled with books. 'Now you'll stay with me, forever,' she smiles.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEnd2"]]]
+    ]
+  },
+  "lilyEndGame": {
+    "text": "Lily manipulates everyone in the village, turning them against you. 'They'll never believe you,' she smirks.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEnd3"]]]
+    ]
+  },
+  "LilyEnd1": {
+    "text": "Lily decides to play mind games, convincing you that you need her. 'You'll see... I'm all you need,' she whispers.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEnd4"]]]
+    ]
+  },
+  "LilyEnd2": {
+    "text": "As the days pass, Lily's manipulations become more intense, isolating you from everyone else.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEnd5"]]]
+    ]
+  },
+  "LilyEnd3": {
+    "text": "Lily controls every aspect of your life. You realize too late that you are just another book in her collection.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "LilyEndFinal"]]]
+    ]
+  },
+  "xenIntroduction": {
+    "text": "The boy looks up, his eyes wide. 'Uh... hi,' he stammers, clutching a book to his chest. His clothes are a mix of purple and black, and he seems almost afraid of you.",
+    "options": [
+      ["Greet him kindly", "xenGreetKindly"],
+      ["Ask what he's reading", "xenAskReading"],
+      ["Invite him to join you for tea", "xenDateInvite"]
+    ]
+  },
+  "xenGreetKindly": {
+    "text": "He seems to relax slightly. 'I'm Xen,' he murmurs. 'I like books... they don't judge.'",
+    "options": [
+      ["Ask about his favorite book", "xenFavoriteBook"],
+      ["Compliment his taste in clothes", "xenCompliment"],
+      ["Ask why he’s so shy", "xenShyTalk"]
+    ]
+  },
+  "xenAskReading": {
+    "text": "Xen glances at the book, then back at you. 'It's... um, a mystery novel,' he says quickly, but you notice his hands trembling.",
+    "options": [
+      ["Ask if he enjoys mysteries", "xenMysteryTalk"],
+      ["Ask why he's nervous", "xenNervousTalk"]
+    ]
+  },
+  "xenDateInvite": {
+    "text": "Xen blushes and looks down. 'Tea? With me? I... I'd like that,' he whispers, his voice barely audible.",
+    "options": [
+      ["Take him to a quiet cafe", "xenCafeDate"],
+      ["Suggest a walk in the library garden", "xenGardenDate"]
+    ]
+  },
+  "xenFavoriteBook": {
+    "text": "Xen's eyes light up. 'I love 'The Lost Mind,' he says. 'It's about someone who loses themselves... and finds something darker.'",
+    "options": [
+      ["Express interest", "xenBonding"],
+      ["Ask why he likes it", "xenDarkness"]
+    ]
+  },
+  "xenCompliment": {
+    "text": "Xen blushes furiously, his eyes darting around. 'Th-thank you... no one ever says that,' he mumbles.",
+    "options": [
+      ["Ask why", "xenWhySoShy"],
+      ["Change the topic", "villageLibrary"]
+    ]
+  },
+  "xenShyTalk": {
+    "text": "'I just... I don't like people looking at me,' Xen admits, his voice barely a whisper. 'They always look too long.'",
+    "options": [
+      ["Reassure him", "xenReassure"],
+      ["Ask if he’s hiding something", "xenRevealSecret"]
+    ]
+  },
+  "xenReassure": {
+    "text": "Xen seems to relax a little. 'You're... different. I don't mind you looking,' he says quietly.",
+    "options": [
+      ["Ask why", "xenWhyDifferent"],
+      ["Invite him for tea", "xenDateInvite"]
+    ]
+  },
+  "xenRevealSecret": {
+    "text": "Xen freezes, his face going pale. 'No! I mean... I'm just... shy,' he insists, but his eyes tell a different story.",
+    "options": [
+      ["Press him for more", "xenPressure"],
+      ["Back off", "villageLibrary"]
+    ]
+  },
+  "xenPressure": {
+    "text": "Xen's hands shake. 'I don't... I don't want to talk about it,' he whispers, but his gaze stays on you, intense and pleading.",
+    "options": [
+      ["Drop the subject", "villageLibrary"],
+      ["Insist gently", "xenConfession"]
+    ]
+  },
+  "xenConfession": {
+    "text": "Xen looks like he's about to cry. 'I... I just get scared sometimes,' he mutters. 'But I feel safer with you.'",
+    "options": [
+      ["Comfort him", "xenComfort"],
+      ["Ask why he’s scared", "xenFear"]
+    ]
+  },
+  "xenComfort": {
+    "text": "Xen's body relaxes a bit. 'Thank you,' he whispers. 'You're really kind... I want to know you better.'",
+    "options": [
+      ["Agree to spend more time with him", "xenDateInvite"],
+      ["Politely decline", "villageLibrary"]
+    ]
+  },
+  "xenFear": {
+    "text": "Xen looks around nervously. 'There are people... who hurt others,' he whispers. 'And I don't want them to hurt you.'",
+    "options": [
+      ["Ask who he means", "xenRevealDanger"],
+      ["Change the subject", "villageLibrary"]
+    ]
+  },
+  "xenRevealDanger": {
+    "text": "Xen bites his lip. 'They're everywhere... but I know how to protect you,' he says, a strange determination in his eyes.",
+    "options": [
+      ["Ask how", "xenProtect"],
+      ["Tell him you don’t need protection", "xenRejection"]
+    ]
+  },
+  "xenProtect": {
+    "text": "'I'll always find you,' Xen says, his voice intense. 'No matter where you go, I'll be there to keep you safe.'",
+    "options": [
+      ["Feel uneasy", "xenUnease"],
+      ["Thank him", "xenGrateful"]
+    ]
+  },
+  "xenUnease": {
+    "text": "Xen notices your discomfort. 'Did I say something wrong?' he asks, his voice trembling.",
+    "options": [
+      ["Reassure him", "xenReassureAgain"],
+      ["End the conversation", "villageLibrary"]
+    ]
+  },
+  "xenReassureAgain": {
+    "text": "Xen calms down slightly. 'Okay... just know that I’m here for you, always,' he murmurs.",
+    "options": [
+      ["Change the topic", "villageLibrary"],
+      ["Invite him to join you for another date", "xenDateInvite"]
+    ]
+  },
+  "xenGrateful": {
+    "text": "Xen's smile is small but genuine. 'Thank you... that means a lot to me,' he whispers.",
+    "options": [
+      ["Ask him more about his life", "xenPast"],
+      ["Leave for now", "villageSquare"]
+    ]
+  },
+  "xenPast": {
+    "text": "'I don’t like to talk about it,' Xen says softly. 'But maybe... maybe with you, I could.'",
+    "options": [
+      ["Encourage him to open up", "xenOpenUp"],
+      ["Change the topic", "villageLibrary"]
+    ]
+  },
+  "xenOpenUp": {
+    "text": "Xen takes a deep breath. 'People have always ignored me... but I don’t mind being invisible, as long as I can be with you.'",
+    "options": [
+      ["Ask why he feels that way", "xenWhyInvisible"],
+      ["End the conversation", "villageSquare"]
+    ]
+  },
+  "xenWhyInvisible": {
+    "text": "'Because... I don’t want anyone else to notice how much I care about you,' he says quietly.",
+    "options": [
+      ["Feel touched", "xenEndearment"],
+      ["Feel uncomfortable", "xenConcerned"]
+    ]
+  },
+  "xenEndearment": {
+    "text": "Xen seems happy with your reaction. 'I’m glad you understand,' he murmurs. 'I think... I think I’m falling for you.'",
+    "options": [
+      ["Encourage his feelings", "xenRomance"],
+      ["Gently reject him", "xenRejection"]
+    ]
+  },
+  "xenConcerned": {
+    "text": "Xen notices your discomfort. 'I’m sorry... I didn’t mean to make you uncomfortable,' he says softly.",
+    "options": [
+      ["Reassure him", "xenReassureFinal"],
+      ["Leave for now", "villageSquare"]
+    ]
+  },
+  "xenReassureFinal": {
+    "text": "'Thank you for understanding,' Xen says quietly. 'I just want to be close to you.'",
+    "options": [
+      ["Suggest another date", "xenDateInvite"],
+      ["End the interaction", "villageLibrary"]
+    ]
+  },
+  "xenRomance": {
+    "text": "Xen’s face lights up. 'Really? You feel the same?' he asks, his voice filled with hope.",
+    "options": [
+      ["Confirm your feelings", "xenLoveConfession"],
+      ["Hesitate", "xenHesitate"]
+    ]
+  },
+  "xenLoveConfession": {
+    "text": "'I promise I’ll never let you go,' Xen says, his voice firm. 'We’re meant to be together.'",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEnd1"]]]
+    ]
+  },
+  "xenHesitate": {
+    "text": "Xen’s expression darkens slightly. 'But… you said you liked me,' he whispers. 'You can’t leave me now.'",
+    "options": [
+      ["Explain gently", "xenExplain"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "xenExplain": {
+    "text": "'No, I don’t accept that!' Xen cries. 'If I can’t have you… no one will!'",
+    "options": [
+      ["Try to calm him down", "xenCalmDown"],
+      ["Fight back", "xenConfront"]
+    ]
+  },
+  "xenCalmDown": {
+    "text": "Xen's breathing slows, but his eyes remain fixated on you. 'I don’t want to lose you,' he whispers.",
+    "options": [
+      ["End the interaction", "villageSquare"],
+      ["Suggest another date", "xenDateInvite"]
+    ]
+  },
+  "xenConfront": {
+    "text": "Xen's face twists with anger. 'You can’t run from me!' he screams, lunging at you.",
+    "options": [
+      ["Fight him off", "xenFight"],
+      ["Run away", "villageSquare"]
+    ]
+  },
+  "xenFight": {
+    "text": "You manage to fight Xen off, but his eyes are filled with dark determination. 'This isn’t over,' he snarls.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEnd2"]]]
+    ]
+  },
+  "XenEnd1": {
+    "text": "Xen becomes completely obsessed, following you everywhere. 'We’ll always be together,' he whispers.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEnd3"]]]
+    ]
+  },
+  "XenEnd2": {
+    "text": "Xen's possessiveness turns violent. He isolates you from everyone, convinced that you belong only to him.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEnd4"]]]
+    ]
+  },
+  "XenEnd3": {
+    "text": "Xen's dark side emerges fully, and he becomes the most dangerous person in the village.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEnd5"]]]
+    ]
+  },
+  "XenEnd4": {
+    "text": "Xen refuses to let you go, and his intelligence makes him impossible to evade.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEndFinal"]]]
+    ]
+  },
+  "XenEnd5": {
+    "text": "Xen's obsession consumes him, and he decides that if he can't have you, no one can.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "XenEndFinal"]]]
+    ]
+  },
+  "lakeArea": {
+    "text": "You arrive at the lake, its surface eerily still. John, the fisherman, is there, his eyes fixed on the water. He barely notices your approach.",
+    "options": [["Talk to John", "johnIntroduction"], ["Leave the lake area", "villageSquare"]]
+  },
+  "johnIntroduction": {
+    "text": "John finally notices you. 'The lake... it's alive, you know,' he mutters. 'It whispers to those who listen.'",
+    "options": [
+      ["Ask what he means", "johnLakeWhispers"],
+      ["Dismiss his comment", "johnDismissComment"],
+      ["Invite him for a drink", "johnDateInvite"]
+    ]
+  },
+  "johnLakeWhispers": {
+    "text": "John's eyes gleam with excitement. 'It has secrets, dark secrets... but it only shares them with those who are worthy.'",
+    "options": [
+      ["Ask about the secrets", "johnSecrets"],
+      ["Show skepticism", "johnSkepticism"]
+    ]
+  },
+  "johnSecrets": {
+    "text": "'The lake needs sacrifices,' John whispers. 'It craves them... I've seen what happens when it's not fed.'",
+    "options": [
+      ["Ask what kind of sacrifices", "johnSacrifices"],
+      ["Show concern", "johnConcern"]
+    ]
+  },
+  "johnSacrifices": {
+    "text": "John's smile is unsettling. 'Animals, mostly... but sometimes... it asks for more,' he says, his voice barely above a whisper.",
+    "options": [
+      ["Ask what he means", "johnMoreSacrifices"],
+      ["End the conversation", "lakeArea"]
+    ]
+  },
+  "johnMoreSacrifices": {
+    "text": "John's gaze is intense. 'It wanted them... the strangers who came here. They never understood the lake's hunger,' he mutters.",
+    "options": [
+      ["Express fear", "johnFearResponse"],
+      ["Ask if he’s serious", "johnSeriousness"]
+    ]
+  },
+  "johnFearResponse": {
+    "text": "John notices your fear and smiles slightly. 'Don't be afraid... I think the lake likes you,' he says.",
+    "options": [
+      ["Ask why", "johnWhyLikeYou"],
+      ["Back away", "lakeArea"]
+    ]
+  },
+  "johnWhyLikeYou": {
+    "text": "'It told me,' John replies simply. 'You have a pure spirit... you belong here.'",
+    "options": [
+      ["Ask what he wants", "johnWhatWant"],
+      ["End the conversation", "lakeArea"]
+    ]
+  },
+  "johnWhatWant": {
+    "text": "John steps closer. 'I want you to join me... to listen to the lake. It has plans for you,' he whispers.",
+    "options": [
+      ["Refuse", "johnRefusal"],
+      ["Agree hesitantly", "johnAgree"]
+    ]
+  },
+  "johnRefusal": {
+    "text": "John frowns. 'You don’t understand... you don’t have a choice. The lake chose you,' he insists.",
+    "options": [
+      ["Challenge him", "johnChallenge"],
+      ["Leave quickly", "lakeArea"]
+    ]
+  },
+  "johnAgree": {
+    "text": "John’s smile widens. 'Good... the lake will be pleased. Come with me,' he says, leading you towards the water.",
+    "options": [
+      ["Follow him", "johnFollow"],
+      ["Change your mind", "lakeArea"]
+    ]
+  },
+  "johnFollow": {
+    "text": "John leads you to a small boat. 'We'll go to the center... where the lake's voice is the strongest,' he says.",
+    "options": [
+      ["Get into the boat", "johnBoatRide"],
+      ["Refuse to get in", "johnBoatRefusal"]
+    ]
+  },
+  "johnBoatRide": {
+    "text": "You get into the boat with John. The water is eerily calm as he rows to the middle of the lake. 'Can you hear it?' he asks softly.",
+    "options": [
+      ["Say you hear nothing", "johnNoHearing"],
+      ["Pretend to hear it", "johnPretendHear"]
+    ]
+  },
+  "johnNoHearing": {
+    "text": "John’s face darkens. 'You must listen harder,' he insists. 'It speaks in whispers, but it's always there.'",
+    "options": [
+      ["Continue pretending", "johnMorePretend"],
+      ["Admit you’re scared", "johnAdmitFear"]
+    ]
+  },
+  "johnPretendHear": {
+    "text": "John's expression softens. 'Yes... yes, you're beginning to understand,' he whispers, his eyes filled with a strange light.",
+    "options": [
+      ["Ask what happens next", "johnNextStep"],
+      ["Stay silent", "johnSilence"]
+    ]
+  },
+  "johnNextStep": {
+    "text": "John smiles. 'We wait... for the lake to accept you,' he says calmly.",
+    "options": [
+      ["Feel uneasy", "johnUnease"],
+      ["Ask what happens if it doesn't", "johnRejection"]
+    ]
+  },
+  "johnSilence": {
+    "text": "John waits, his gaze never leaving the water. 'It will speak soon... it always does,' he murmurs.",
+    "options": [
+      ["Wait with him", "johnWait"],
+      ["Jump out of the boat", "johnEscape"]
+    ]
+  },
+  "johnEscape": {
+    "text": "You jump out of the boat and start swimming back. John watches, his face calm. 'You can't escape the lake,' he calls after you.",
+    "options": [
+      ["Keep swimming", "lakeArea"],
+      ["Look back", "johnLookBack"]
+    ]
+  },
+  "johnLookBack": {
+    "text": "John stands in the boat, his eyes following you. 'The lake will find you... it always does,' he whispers.",
+    "options": [
+      ["Keep swimming", "lakeArea"],
+      ["Stop and listen", "johnListen"]
+    ]
+  },
+  "johnListen": {
+    "text": "You stop, and for a moment, you think you hear something... a whisper, just beneath the surface of the water.",
+    "options": [
+      ["Dive to investigate", "johnDive"],
+      ["Shake it off and keep swimming", "lakeArea"]
+    ]
+  },
+  "johnDive": {
+    "text": "You dive into the water, and for a brief moment, you feel a strange pull... as if something is trying to draw you deeper.",
+    "options": [
+      ["Resist the pull", "johnResist"],
+      ["Let it pull you", "johnLetPull"]
+    ]
+  },
+  "johnResist": {
+    "text": "You struggle against the pull, and eventually break free, gasping for air. John watches, a strange smile on his face.",
+    "options": [
+      ["Swim to shore", "lakeArea"],
+      ["Ask John what that was", "johnWhatThatWas"]
+    ]
+  },
+  "johnLetPull": {
+    "text": "You let the pull guide you deeper, and the water grows colder around you. You hear a faint voice, like a whisper...",
+    "options": [
+      ["Listen to the voice", "johnVoice"],
+      ["Panic and try to swim up", "johnPanic"]
+    ]
+  },
+  "johnVoice": {
+    "text": "The voice is soft, almost soothing. 'Join us... stay with us forever,' it whispers.",
+    "options": [
+      ["Accept the voice", "johnEndLake"],
+      ["Fight against it", "johnFightLake"]
+    ]
+  },
+  "johnPanic": {
+    "text": "You panic and try to swim up, but the water feels like it’s closing around you. John watches, his eyes wide with fascination.",
+    "options": [
+      ["Continue struggling", "johnStruggle"],
+      ["Give in", "johnEndLake"]
+    ]
+  },
+  "johnStruggle": {
+    "text": "You finally break free and gasp for air. John is still in the boat, watching with a strange satisfaction.",
+    "options": [
+      ["Swim to shore", "lakeArea"],
+      ["Ask John why he’s smiling", "johnSmile"]
+    ]
+  },
+  "johnSmile": {
+    "text": "'The lake chose you,' he says simply. 'You just need more time to understand.'",
+    "options": [
+      ["End the interaction", "lakeArea"],
+      ["Confront him", "johnConfrontation"]
+    ]
+  },
+  "johnEndLake": {
+    "text": "You feel the water envelop you, its cold embrace becoming warm and comforting. You hear John's voice above, 'Welcome home...'",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEnd1"]]]
+    ]
+  },
+  "johnFightLake": {
+    "text": "You fight against the water with all your strength and manage to break the surface, gasping for breath. John looks disappointed. 'The lake isn’t done with you yet,' he murmurs.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEnd2"]]]
+    ]
+  },
+  "johnConfrontation": {
+    "text": "You confront John, demanding to know what he wants. His eyes are cold. 'I want what the lake wants... and it wants you,' he says, stepping closer.",
+    "options": [
+      ["Fight back", "johnFightBack"],
+      ["Run away", "lakeArea"]
+    ]
+  },
+  "johnFightBack": {
+    "text": "You push John away, but he grabs your arm, his grip surprisingly strong. 'You can’t escape the lake,' he hisses.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEnd3"]]]
+    ]
+  },
+  "JohnEnd1": {
+    "text": "John becomes your constant companion by the lake. He teaches you its secrets, and you find yourself slowly succumbing to its call.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEndFinal"]]]
+    ]
+  },
+  "JohnEnd2": {
+    "text": "You manage to escape the lake, but John's voice haunts you. Every time you close your eyes, you see the water.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEndFinal"]]]
+    ]
+  },
+  "JohnEnd3": {
+    "text": "John's obsession grows darker. He follows you everywhere, insisting that you return to the lake with him.",
+    "options": [
+      ["End the game", "endGame", [["function_End", "JohnEndFinal"]]]
+    ]
+  },
+
+  "endGame": {
+    "text": "The story concludes. Your choices have led to this end.",
+    "ending": "true",
+    "options": []
   }
-  
+}
