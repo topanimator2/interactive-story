@@ -241,6 +241,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Add event listener to the title to return to the story chooser screen
+  title.addEventListener("click", function () {
+    resetToStoryChooser();
+  });
+
+  // Function to reset to the story chooser screen
+  function resetToStoryChooser() {
+    const overviewContainer = document.getElementById("overview-container");
+    if (overviewContainer) {
+      overviewContainer.style.display = "block"; // Show the story chooser
+    }
+    title.textContent = "Start"; // Reset title
+    storyText.innerHTML = ""; // Clear story text
+    optionsContainer.innerHTML = ""; // Clear options
+    window.location.hash = ""; // Reset URL hash
+    currentStory = "";
+    currentPart = "Start";
+    storyState = {}; // Clear the story state
+  }
+
   // Initialize the story state from the URL hash on page load
   initStateFromHash();
 
