@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let storyData = {}; // To hold the loaded story data
   let storyEndings = {}; // To hold the loaded endings data
   let storyState = {}; // To track the current state, like traits
+  let currentStory = ""; // To track the current story folder
+  let currentPart = "Start"; // To track the current part of the story
 
   // Function to load JSON data from GitHub
   async function loadJsonFromGitHub(url) {
@@ -61,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
         overviewContainer.style.display = "none"; // Hide overview when a story is selected
       }
 
+      currentStory = storyFolder; // Set the current story folder
+
       // Load story and endings data
       const storyUrl = `${GITHUB_BASE_URL}/${storyFolder}/story.json`;
       const endingsUrl = `${GITHUB_BASE_URL}/${storyFolder}/endings.json`;
@@ -68,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       storyEndings = await loadJsonFromGitHub(endingsUrl);
 
       // Start the story at the 'Start' node
-      updateStory("Start");
+      updateStory(currentPart);
 
       // Update the hash in the URL with the initial state
       updateHash();
@@ -79,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to update the story based on the current part
   function updateStory(partName) {
+    currentPart = partName; // Set the current part of the story
     const part = storyData[partName];
     title.textContent = partName;
     storyText.innerHTML = part.text;
@@ -194,10 +199,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function to update the URL hash with the current story state
+  // Function to update the URL hash with the current story, part, and state
   function updateHash() {
     const stateString = Object.entries(storyState).map(([key, value]) => `${key}=${value}`).join("&");
-    window.location.hash = `#${stateString}`;
+    window.location.hash = `#${currentStory}#${currentPart}#${stateString}`;
   }
 
   // Function to initialize the story state from the URL hash
@@ -205,11 +210,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
 
-    const statePairs = hash.split("&");
-    statePairs.forEach(pair => {
-      const [key, value] = pair.split("=");
-      storyState[key] = isNaN(value) ? value : parseInt(value);
-    });
+    const [storyFolder, partName, stateString] = hash.split("#");
+    if (storyFolder) {
+      currentStory = storyFolder;
+      currentPart = partName || "Start";
+
+      // Parse the state from the state string
+      if (stateString) {
+        const statePairs = stateString.split("&");
+        statePairs.forEach(pair => {
+          const [key, value] = pair.split("=");
+          storyState[key] = isNaN(value) ? value : parseInt(value);
+        });
+      }
+
+      // Hide the story chooser when loading from hash
+      const overviewContainer = document.getElementById("overview-container");
+      if (overviewContainer) {
+        overviewContainer.style.display = "none";
+      }
+
+      // Load the story with the current state
+      loadStory(currentStory);
+    }
   }
 
   // Initialize the story state from the URL hash on page load
