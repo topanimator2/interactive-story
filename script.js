@@ -3,22 +3,70 @@ document.addEventListener("DOMContentLoaded", function () {
   let storyText = document.querySelector("#story-text");
   let optionsContainer = document.querySelector("#options-container");
 
+  const GITHUB_BASE_URL = "https://raw.githubusercontent.com/topanimator2/interactive-story/main/stories";
   let storyData = {}; // To hold the loaded story data
   let storyEndings = {}; // To hold the loaded endings data
   let storyState = {}; // To track the current state, like traits
 
-  // Function to load JSON data
-  async function loadJson(url) {
+  // Function to load JSON data from GitHub
+  async function loadJsonFromGitHub(url) {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error loading JSON from ${url}`);
+    }
     return await response.json();
   }
 
-  // Function to initialize the story
-  async function initStory() {
+  // Function to initialize the story overview screen
+  async function loadStoryOverview() {
     try {
-      // Load story and ending data
-      storyData = await loadJson('story.json');
-      storyEndings = await loadJson('endings.json');
+      const storyOverviewUrl = `${GITHUB_BASE_URL}/storyinfo.json`;
+      const stories = await loadJsonFromGitHub(storyOverviewUrl);
+
+      // Create a container for story overviews
+      const overviewContainer = document.createElement("div");
+      overviewContainer.id = "overview-container";
+
+      stories.forEach((story) => {
+        const storyDiv = document.createElement("div");
+        storyDiv.className = "story-item";
+
+        // Create the title for the story
+        const storyButton = document.createElement("button");
+        storyButton.textContent = story.title;
+        storyButton.onclick = () => loadStory(story.folder);
+        storyDiv.appendChild(storyButton);
+
+        // Create the image element for the story
+        const storyImage = new Image();
+        storyImage.src = `${GITHUB_BASE_URL}/${story.image}`;
+        storyImage.alt = story.title;
+        storyImage.className = "story-image";
+        storyDiv.appendChild(storyImage);
+
+        overviewContainer.appendChild(storyDiv);
+      });
+
+      document.body.appendChild(overviewContainer);
+    } catch (error) {
+      console.error("Error loading story overview:", error);
+    }
+  }
+
+  // Function to load a selected story
+  async function loadStory(storyFolder) {
+    try {
+      const overviewContainer = document.getElementById("overview-container");
+      if (overviewContainer) {
+        overviewContainer.style.display = "none"; // Hide overview when a story is selected
+      }
+
+      // Load story and endings data
+      const storyUrl = `${GITHUB_BASE_URL}/${storyFolder}/story.json`;
+      const endingsUrl = `${GITHUB_BASE_URL}/${storyFolder}/endings.json`;
+      storyData = await loadJsonFromGitHub(storyUrl);
+      storyEndings = await loadJsonFromGitHub(endingsUrl);
+
       // Start the story at the 'Start' node
       updateStory("Start");
     } catch (error) {
@@ -116,19 +164,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to handle the end of the story
   function endStory(endingKey) {
-    const ending = storyEndings[endingKey];
+    const ending = storyEndings.endings[endingKey];
     if (ending) {
       title.textContent = ending.title;
       storyText.innerHTML = ending.text;
 
       if (ending.image) {
         const imageElement = new Image();
-        imageElement.src = ending.image;
+        imageElement.src = `${GITHUB_BASE_URL}/${ending.image}`;
         document.body.appendChild(imageElement);
       }
 
       if (ending.music) {
-        const audio = new Audio(ending.music);
+        const audio = new Audio(`${GITHUB_BASE_URL}/${ending.music}`);
         audio.play();
       }
 
@@ -142,6 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Initialize the story when the page loads
-  initStory();
+  // Initialize the story overview screen when the page loads
+  loadStoryOverview();
 });
