@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let storyState = {}; // To track the current state, like traits
   let currentStory = ""; // To track the current story folder
   let currentPart = "Start"; // To track the current part of the story
+  let currentAudio = null; // To hold the currently playing audio
 
   // Function to load JSON data from GitHub
   async function loadJsonFromGitHub(url) {
@@ -94,12 +95,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to update the story based on the current part
-  function updateStory(partName) {
+  async function updateStory(partName) {
     currentPart = partName; // Set the current part of the story
     const part = storyData[partName];
     title.textContent = partName;
     storyText.innerHTML = part.text;
     optionsContainer.innerHTML = "";
+
+    // Check and play sound for the current part
+    await checkAndPlaySound(partName);
 
     part.options.forEach(option => {
       const [optionText, nextPart, funcs] = option;
@@ -123,6 +127,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (part.ending) {
       handleEnding(part.ending);
+    }
+  }
+
+  // Function to check and play sound for the current part
+  async function checkAndPlaySound(partName) {
+    const soundUrl = `${GITHUB_BASE_URL}/${currentStory}/sounds/${partName}.mp3`; // Assuming sound files are in .mp3 format
+
+    try {
+      // Try fetching the sound file
+      const response = await fetch(soundUrl, { method: "HEAD" });
+      if (response.ok) {
+        // Stop any currently playing audio
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+
+        // Play the new sound file
+        currentAudio = new Audio(soundUrl);
+        currentAudio.play();
+      } else {
+        console.warn(`No sound file found for part: ${partName}`);
+      }
+    } catch (error) {
+      console.error(`Error checking or playing sound for part: ${partName}`, error);
     }
   }
 
@@ -211,71 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function to show the debug view
-  function showDebugView() {
-    const debugContainer = document.createElement("div");
-    debugContainer.id = "debug-container";
-    document.body.appendChild(debugContainer);
-
-    Object.entries(storyData).forEach(([partName, part]) => {
-      const partElement = document.createElement("div");
-      partElement.className = "story-part";
-      partElement.innerHTML = `<strong>${partName}</strong>: ${part.text}`;
-
-      part.options.forEach(option => {
-        const [optionText, nextPart] = option;
-        const optionElement = document.createElement("div");
-        optionElement.className = "story-option";
-        optionElement.innerHTML = `&rarr; ${optionText} → <strong>${nextPart}</strong>`;
-        partElement.appendChild(optionElement);
-      });
-
-      debugContainer.appendChild(partElement);
-    });
-
-    checkForDebugIssues();
-  }
-
-  // Function to check for repeating paths and missing endings
-  function checkForDebugIssues() {
-    const visitedParts = new Set();
-    const detectedEndings = new Set();
-    const missingEndings = [];
-
-    Object.entries(storyData).forEach(([partName, part]) => {
-      if (visitedParts.has(partName)) {
-        console.warn(`Repeating path detected at part: ${partName}`);
-      } else {
-        visitedParts.add(partName);
-      }
-
-      part.options.forEach(option => {
-        const [_, nextPart, funcs] = option;
-
-        // Check if the part has a function_End
-        if (funcs && funcs.some(func => func[0] === "function_End")) {
-          const endingKey = funcs.find(func => func[0] === "function_End")[1];
-          detectedEndings.add(endingKey); // Track unique endings
-          if (!storyEndings.endings[endingKey]) {
-            console.warn(`Missing ending: ${endingKey}`);
-            missingEndings.push(endingKey);
-          }
-        } else if (!storyData[nextPart] && !storyEndings.endings[nextPart]) {
-          console.warn(`Missing continuation or ending for part: ${nextPart}`);
-          missingEndings.push(nextPart);
-        }
-      });
-    });
-
-    console.log(`Total Unique Endings Detected: ${detectedEndings.size}`);
-    console.log("Debug Check Complete.");
-    if (missingEndings.length > 0) {
-      console.log("Missing Endings: ", missingEndings);
-    } else {
-      console.log("No Missing Endings Detected.");
-    }
-  }
-
   // Function to update the URL hash with the current story, part, and state
   function updateHash() {
     const stateString = Object.entries(storyState).map(([key, value]) => `${key}=${value}`).join("&");
@@ -329,6 +293,13 @@ document.addEventListener("DOMContentLoaded", function () {
     currentStory = "";
     currentPart = "Start";
     storyState = {}; // Clear the story state
+
+    // Stop any currently playing audio
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentAudio = null;
+    }
   }
 
   // Initialize the story state from the URL hash on page load
