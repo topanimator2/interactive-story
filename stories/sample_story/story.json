@@ -10,21 +10,20 @@
       "text": "This is the middle part <br> a break should also work,<br> this should just make an inline text into the html",
       "options": [
         ["remove hotness and hearts", "none", [["function_Manage", "remove", "heart", "3"], ["function_Manage", "remove", "hotness", "1"]]],
-        ["the second option", "none"],
+        ["the second option", "none", [["function_End", "empty"]]],
         ["a third option to head back to the Start", "Start"]
       ]
     },
     "Third": {
       "text": "This is the other second part <br> a break should also work,<br> this should just make an inline text into the html",
       "options": [
-        ["this is option one", "none"],
+        ["this is option one", "none", [["function_End", "empty"]]],
         ["the second option", "Second", [["function_Manage", "add", "hotness", "3"], ["condition", "heart", ">", "2"], ["condition", "hotness", "<", "5"]]]
       ]
     },
     "none": {
       "text": "This is empty",
-      "ending": "empty",
-      "options": []
+      "options": [ ]
     }
   }
   
