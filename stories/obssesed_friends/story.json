@@ -166,8 +166,101 @@
     "emmaReassurance": {
       "text": "You try to reassure Emma, but her expression remains tense. 'Just stay close to me... and everything will be fine,' she says.",
       "options": [
-        ["Agree", "villageSquare", [["function_Manage", "add", "experience", "reassured"]]],
+        ["Agree", "emmaFinalPlan", [["function_Manage", "add", "experience", "reassured"]]],
         ["Refuse and back away", "villageSquare", [["function_Manage", "add", "experience", "refused"]]]
+      ]
+    },
+    "emmaFinalPlan": {
+      "text": "Emma relaxes, but there's something unsettling in her gaze. 'I knew you’d see things my way... there’s just one more thing I need you to do,' she says.",
+      "options": [
+        ["Ask what she wants", "emmaDemand"],
+        ["Agree without asking", "emmaBlindAgreement"]
+      ]
+    },
+    "emmaDemand": {
+      "text": "'I want you to cut ties with everyone else in the village... I can’t have them taking you from me,' Emma says, her voice firm.",
+      "options": [
+        ["Agree to her demand", "emmaFinalAgreement"],
+        ["Refuse and confront her", "emmaEndConfront"],
+        ["Try to reason with her", "emmaReasoning"]
+      ]
+    },
+    "emmaBlindAgreement": {
+      "text": "Emma’s eyes glimmer with satisfaction. 'You’re mine now,' she whispers, her voice dripping with possession.",
+      "options": [
+        ["Follow her", "emmaFinalAct", [["function_Manage", "add", "heart", "3"]]],
+        ["Hesitate", "emmaFinalHesitation"]
+      ]
+    },
+    "emmaReasoning": {
+      "text": "You try to reason with Emma, but she becomes more agitated. 'No! They’ll take you away from me!' she shouts.",
+      "options": [
+        ["Attempt to calm her down", "emmaReassurance", [["function_Manage", "add", "heart", "2"]]],
+        ["End the conversation", "villageSquare", [["function_Manage", "add", "experience", "failed_reasoning"]]]
+      ]
+    },
+    "emmaFinalAgreement": {
+      "text": "Emma smiles wide, almost too wide. 'Good... we’ll be together, just us,' she murmurs.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndTogether"]]]
+      ]
+    },
+    "emmaFinalHesitation": {
+      "text": "Emma’s smile fades, and her eyes fill with anger. 'You’re lying! You don’t want to stay with me!' she accuses.",
+      "options": [
+        ["Try to reassure her", "emmaReassurance"],
+        ["Admit the truth", "emmaEndTruth"]
+      ]
+    },
+    "emmaEndTruth": {
+      "text": "Emma's face twists in pain. 'Then you leave me no choice,' she mutters, reaching for a knife.",
+      "options": [
+        ["Fight her off", "emmaEndFight"],
+        ["Run away", "villageSquare", [["function_Manage", "add", "experience", "escaped_final"]]]
+      ]
+    },
+    "emmaEndFight": {
+      "text": "You manage to fend off Emma, but she screams, 'This isn’t over!' and disappears into the shadows.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndUnfinished"]]]
+      ]
+    },
+    "emmaFinalAct": {
+      "text": "You follow Emma, and she locks the door behind you. 'Now we’re alone, just like it should be,' she whispers.",
+      "options": [
+        ["Try to escape", "emmaFinalEscape"],
+        ["Submit to her", "emmaSubmission"]
+      ]
+    },
+    "emmaFinalEscape": {
+      "text": "You attempt to escape, but Emma catches you. 'You can't leave!' she screams, holding you tight.",
+      "options": [
+        ["Fight her", "emmaEndFight"],
+        ["Calm her down", "emmaReassurance"]
+      ]
+    },
+    "emmaSubmission": {
+      "text": "You give in, and Emma seems satisfied. 'Good... now we can be together, forever,' she says, her eyes filled with madness.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndPossession"]]]
+      ]
+    },
+    "EmmaEndTogether": {
+      "text": "You cut ties with everyone, and Emma keeps you close, watching your every move. She never lets you out of her sight.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndTogetherFinal"]]]
+      ]
+    },
+    "EmmaEndUnfinished": {
+      "text": "Emma disappears, but you know she's out there, still obsessed. You can never fully relax.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndUnfinishedFinal"]]]
+      ]
+    },
+    "EmmaEndPossession": {
+      "text": "Emma controls every aspect of your life. You are hers, and she makes sure you never forget it.",
+      "options": [
+        ["End the game", "endGame", [["function_End", "EmmaEndPossessionFinal"]]]
       ]
     },
     "emmaEndConfront": {
@@ -329,12 +422,6 @@
     "options": [
       ["Fight her", "emmaEndFight"],
       ["Flee the shop", "villageSquare"]
-    ]
-  },
-  "emmaEndFight": {
-    "text": "You manage to fend off Emma, but she vows to return. 'This isn't over,' she snarls.",
-    "options": [
-      ["End the game", "endGame", [["function_End", "EmmaEnd1"]]]
     ]
   },
   "emmaEnd1": {
@@ -858,32 +945,161 @@
     ]
   },
   "xenGreetKindly": {
-    "text": "He seems to relax slightly. 'I'm Xen,' he murmurs. 'I like books... they don't judge.'",
-    "options": [
-      ["Ask about his favorite book", "xenFavoriteBook"],
-      ["Compliment his taste in clothes", "xenCompliment"],
-      ["Ask why he’s so shy", "xenShyTalk"]
-    ]
-  },
+  "text": "He seems to relax slightly. 'I'm Xen,' he murmurs. 'I like books... they don't judge.'",
+  "options": [
+    ["Ask about his favorite book", "xenFavoriteBook"],
+    ["Compliment his taste in clothes", "xenCompliment"],
+    ["Ask why he’s so shy", "xenShyTalk"]
+  ]
+},
+"xenFavoriteBook": {
+  "text": "Xen's eyes light up. 'I love 'The Lost Mind,' he says. 'It's about someone who loses themselves... and finds something darker.'",
+  "options": [
+    ["Express interest", "xenBonding"],
+    ["Ask why he likes it", "xenDarkness"]
+  ]
+},
+"xenBonding": {
+  "text": "Xen looks surprised but pleased. 'Not many people understand that book,' he says softly. 'Maybe you and I are similar.'",
+  "options": [
+    ["Encourage him", "xenEncouragement"],
+    ["Change the topic", "villageLibrary"]
+  ]
+},
+"xenEncouragement": {
+  "text": "Xen smiles shyly. 'I'd like to spend more time with you,' he admits. 'You're... different.'",
+  "options": [
+    ["Agree to spend time with him", "xenDateInvite"],
+    ["Gently decline", "villageLibrary"]
+  ]
+},
+"xenDateInvite": {
+  "text": "Xen blushes and looks down. 'Tea? With me? I... I'd like that,' he whispers, his voice barely audible.",
+  "options": [
+    ["Take him to a quiet cafe", "xenCafeDate"],
+    ["Suggest a walk in the library garden", "xenGardenDate"]
+  ]
+},
+"xenCafeDate": {
+  "text": "At the quiet cafe, Xen is nervous but gradually relaxes. 'It's nice... being here with you,' he murmurs.",
+  "options": [
+    ["Ask him about his life", "xenPast"],
+    ["Flatter him to boost his confidence", "xenBoostConfidence"]
+  ]
+},
+"xenBoostConfidence": {
+  "text": "Xen blushes. 'You're too kind,' he whispers, but he seems pleased. 'I... want to keep you close.'",
+  "options": [
+    ["Agree to stay close", "xenClingy"],
+    ["Politely change the subject", "villageLibrary"]
+  ]
+},
+"xenClingy": {
+  "text": "Xen's eyes brighten, and he takes your hand. 'Good... you won't regret it,' he says, squeezing your hand tightly.",
+  "options": [
+    ["Continue the date", "xenDateContinuation"],
+    ["Express unease", "xenExpressUnease"]
+  ]
+},
+"xenExpressUnease": {
+  "text": "Xen notices your discomfort. 'I didn't mean to make you uneasy,' he murmurs. 'But... I don't want to lose you.'",
+  "options": [
+    ["Reassure him", "xenReassure"],
+    ["End the date early", "villageLibrary"]
+  ]
+},
+"xenReassure": {
+  "text": "Xen calms down slightly. 'Okay... just know that I'm here for you, always,' he whispers.",
+  "options": [
+    ["Invite him to another date", "xenDateInvite"],
+    ["End the conversation", "villageLibrary"]
+  ]
+},
+"xenDateContinuation": {
+  "text": "The date continues smoothly, but Xen becomes more clingy, never letting go of your hand. 'I feel safe with you,' he confesses.",
+  "options": [
+    ["Encourage his feelings", "xenEncourageFeelings"],
+    ["Ask for some space", "xenAskSpace"]
+  ]
+},
+"xenEncourageFeelings": {
+  "text": "Xen's face lights up. 'I think... I'm falling for you,' he says, his voice filled with emotion.",
+  "options": [
+    ["Confirm your feelings", "xenLoveConfession"],
+    ["Gently reject him", "xenRejection"]
+  ]
+},
+"xenAskSpace": {
+  "text": "Xen's expression darkens slightly. 'But... I thought you wanted to be close,' he whispers. 'You can't leave me now.'",
+  "options": [
+    ["Explain gently", "xenExplain"],
+    ["Run away", "villageLibrary"]
+  ]
+},
+"xenExplain": {
+  "text": "'No, I don't accept that!' Xen cries. 'If I can't have you... no one will!'",
+  "options": [
+    ["Try to calm him down", "xenCalmDown"],
+    ["Fight back", "xenConfront"]
+  ]
+},
+"xenCalmDown": {
+  "text": "Xen's breathing slows, but his eyes remain fixated on you. 'I don't want to lose you,' he whispers.",
+  "options": [
+    ["End the interaction", "villageLibrary"],
+    ["Suggest another date", "xenDateInvite"]
+  ]
+},
+"xenConfront": {
+  "text": "Xen's face twists with anger. 'You can't run from me!' he screams, lunging at you.",
+  "options": [
+    ["Fight him off", "xenFight"],
+    ["Run away", "villageLibrary"]
+  ]
+},
+"xenFight": {
+  "text": "You manage to fight Xen off, but his eyes are filled with dark determination. 'This isn't over,' he snarls.",
+  "options": [
+    ["End the game", "endGame", [["function_End", "XenEnd2"]]]
+  ]
+},
+"xenLoveConfession": {
+  "text": "'I promise I'll never let you go,' Xen says, his voice firm. 'We're meant to be together.'",
+  "options": [
+    ["End the game", "endGame", [["function_End", "XenEnd1"]]]
+  ]
+},
+"xenRejection": {
+  "text": "Xen's eyes fill with tears. 'No one ever chooses me...' he whispers, his face a mixture of hurt and fury.",
+  "options": [
+    ["Try to comfort him", "xenTryComfort"],
+    ["Leave immediately", "villageLibrary"]
+  ]
+},
+"xenTryComfort": {
+  "text": "You try to comfort Xen, but his emotions are too intense. 'Don't lie to me!' he shouts, suddenly pushing you away.",
+  "options": [
+    ["Fight back", "xenFight"],
+    ["Run for your life", "villageLibrary"]
+  ]
+},
+"XenEnd1": {
+  "text": "Xen becomes completely obsessed, following you everywhere. 'We'll always be together,' he whispers.",
+  "options": [
+    ["End the game", "endGame", [["function_End", "XenEnd3"]]]
+  ]
+},
+"XenEnd2": {
+  "text": "Xen's possessiveness turns violent. He isolates you from everyone, convinced that you belong only to him.",
+  "options": [
+    ["End the game", "endGame", [["function_End", "XenEnd4"]]]
+  ]
+},
   "xenAskReading": {
     "text": "Xen glances at the book, then back at you. 'It's... um, a mystery novel,' he says quickly, but you notice his hands trembling.",
     "options": [
       ["Ask if he enjoys mysteries", "xenMysteryTalk"],
       ["Ask why he's nervous", "xenNervousTalk"]
-    ]
-  },
-  "xenDateInvite": {
-    "text": "Xen blushes and looks down. 'Tea? With me? I... I'd like that,' he whispers, his voice barely audible.",
-    "options": [
-      ["Take him to a quiet cafe", "xenCafeDate"],
-      ["Suggest a walk in the library garden", "xenGardenDate"]
-    ]
-  },
-  "xenFavoriteBook": {
-    "text": "Xen's eyes light up. 'I love 'The Lost Mind,' he says. 'It's about someone who loses themselves... and finds something darker.'",
-    "options": [
-      ["Express interest", "xenBonding"],
-      ["Ask why he likes it", "xenDarkness"]
     ]
   },
   "xenCompliment": {
@@ -898,13 +1114,6 @@
     "options": [
       ["Reassure him", "xenReassure"],
       ["Ask if he’s hiding something", "xenRevealSecret"]
-    ]
-  },
-  "xenReassure": {
-    "text": "Xen seems to relax a little. 'You're... different. I don't mind you looking,' he says quietly.",
-    "options": [
-      ["Ask why", "xenWhyDifferent"],
-      ["Invite him for tea", "xenDateInvite"]
     ]
   },
   "xenRevealSecret": {
@@ -1024,58 +1233,6 @@
     "options": [
       ["Confirm your feelings", "xenLoveConfession"],
       ["Hesitate", "xenHesitate"]
-    ]
-  },
-  "xenLoveConfession": {
-    "text": "'I promise I’ll never let you go,' Xen says, his voice firm. 'We’re meant to be together.'",
-    "options": [
-      ["End the game", "endGame", [["function_End", "XenEnd1"]]]
-    ]
-  },
-  "xenHesitate": {
-    "text": "Xen’s expression darkens slightly. 'But… you said you liked me,' he whispers. 'You can’t leave me now.'",
-    "options": [
-      ["Explain gently", "xenExplain"],
-      ["Run away", "villageSquare"]
-    ]
-  },
-  "xenExplain": {
-    "text": "'No, I don’t accept that!' Xen cries. 'If I can’t have you… no one will!'",
-    "options": [
-      ["Try to calm him down", "xenCalmDown"],
-      ["Fight back", "xenConfront"]
-    ]
-  },
-  "xenCalmDown": {
-    "text": "Xen's breathing slows, but his eyes remain fixated on you. 'I don’t want to lose you,' he whispers.",
-    "options": [
-      ["End the interaction", "villageSquare"],
-      ["Suggest another date", "xenDateInvite"]
-    ]
-  },
-  "xenConfront": {
-    "text": "Xen's face twists with anger. 'You can’t run from me!' he screams, lunging at you.",
-    "options": [
-      ["Fight him off", "xenFight"],
-      ["Run away", "villageSquare"]
-    ]
-  },
-  "xenFight": {
-    "text": "You manage to fight Xen off, but his eyes are filled with dark determination. 'This isn’t over,' he snarls.",
-    "options": [
-      ["End the game", "endGame", [["function_End", "XenEnd2"]]]
-    ]
-  },
-  "XenEnd1": {
-    "text": "Xen becomes completely obsessed, following you everywhere. 'We’ll always be together,' he whispers.",
-    "options": [
-      ["End the game", "endGame", [["function_End", "XenEnd3"]]]
-    ]
-  },
-  "XenEnd2": {
-    "text": "Xen's possessiveness turns violent. He isolates you from everyone, convinced that you belong only to him.",
-    "options": [
-      ["End the game", "endGame", [["function_End", "XenEnd4"]]]
     ]
   },
   "XenEnd3": {

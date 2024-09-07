@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Hide the overview if the story is loaded from the URL hash
       const hash = window.location.hash.slice(1);
-      if (hash) {
+      if (hash && !hash.startsWith("!debug")) {
         overviewContainer.style.display = "none";
       }
 
@@ -78,11 +78,16 @@ document.addEventListener("DOMContentLoaded", function () {
       storyData = await loadJsonFromGitHub(storyUrl);
       storyEndings = await loadJsonFromGitHub(endingsUrl);
 
-      // Start the story at the specified part
-      updateStory(currentPart);
+      // Check if debug mode is enabled
+      if (window.location.hash.includes("!debug")) {
+        showDebugView();
+      } else {
+        // Start the story at the specified part
+        updateStory(currentPart);
 
-      // Update the hash in the URL with the initial state
-      updateHash();
+        // Update the hash in the URL with the initial state
+        updateHash();
+      }
     } catch (error) {
       console.error("Error loading story:", error);
     }
@@ -203,6 +208,60 @@ document.addEventListener("DOMContentLoaded", function () {
       optionsContainer.innerHTML = ""; // No more options at the end
     } else {
       console.error(`Ending not found: ${endingKey}`);
+    }
+  }
+
+  // Function to show the debug view
+  function showDebugView() {
+    const debugContainer = document.createElement("div");
+    debugContainer.id = "debug-container";
+    document.body.appendChild(debugContainer);
+
+    Object.entries(storyData).forEach(([partName, part]) => {
+      const partElement = document.createElement("div");
+      partElement.className = "story-part";
+      partElement.innerHTML = `<strong>${partName}</strong>: ${part.text}`;
+
+      part.options.forEach(option => {
+        const [optionText, nextPart] = option;
+        const optionElement = document.createElement("div");
+        optionElement.className = "story-option";
+        optionElement.innerHTML = `&rarr; ${optionText} → <strong>${nextPart}</strong>`;
+        partElement.appendChild(optionElement);
+      });
+
+      debugContainer.appendChild(partElement);
+    });
+
+    checkForDebugIssues();
+  }
+
+  // Function to check for repeating paths and missing endings
+  function checkForDebugIssues() {
+    const visitedParts = new Set();
+    const missingEndings = [];
+
+    Object.entries(storyData).forEach(([partName, part]) => {
+      if (visitedParts.has(partName)) {
+        console.warn(`Repeating path detected at part: ${partName}`);
+      } else {
+        visitedParts.add(partName);
+      }
+
+      part.options.forEach(option => {
+        const [_, nextPart] = option;
+        if (!storyData[nextPart] && !storyEndings.endings[nextPart]) {
+          console.warn(`Missing ending or continuation for part: ${nextPart}`);
+          missingEndings.push(nextPart);
+        }
+      });
+    });
+
+    console.log("Debug Check Complete.");
+    if (missingEndings.length > 0) {
+      console.log("Missing Endings: ", missingEndings);
+    } else {
+      console.log("No Missing Endings Detected.");
     }
   }
 
