@@ -239,8 +239,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to check for repeating paths and missing endings
   function checkForDebugIssues() {
     const visitedParts = new Set();
+    const detectedEndings = new Set();
     const missingEndings = [];
-    const validEndings = new Set(); // To keep track of valid ending names
 
     Object.entries(storyData).forEach(([partName, part]) => {
       if (visitedParts.has(partName)) {
@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if the part has a function_End
         if (funcs && funcs.some(func => func[0] === "function_End")) {
           const endingKey = funcs.find(func => func[0] === "function_End")[1];
-          validEndings.add(endingKey); // Mark as valid ending
+          detectedEndings.add(endingKey); // Track unique endings
           if (!storyEndings.endings[endingKey]) {
             console.warn(`Missing ending: ${endingKey}`);
             missingEndings.push(endingKey);
@@ -267,15 +267,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+    console.log(`Total Unique Endings Detected: ${detectedEndings.size}`);
     console.log("Debug Check Complete.");
     if (missingEndings.length > 0) {
       console.log("Missing Endings: ", missingEndings);
     } else {
       console.log("No Missing Endings Detected.");
     }
-
-    // Count the total number of valid endings
-    console.log(`Total Endings Detected: ${validEndings.size}`);
   }
 
   // Function to update the URL hash with the current story, part, and state
