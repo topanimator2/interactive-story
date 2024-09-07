@@ -1,0 +1,75 @@
+{
+    "Start": {
+        "text": "You see a blinding pure yellow light and suddenly all goes dark.. <br> After a few second your eyes seem to adapt and you see five figures.. <br> A charming snow white wolf human hybrid, around 2 meters tall and seemingly strong, wearing a paladins armor of sorts. <br> A small feminine almost child like short cat boy with long lush white snow white hair with some light blue streaks in it. <br> A large spider girl of sorts with-...",
+        "options": [
+            [
+                "Reach out to the wolf..",
+                "SnowTownChurchStart",
+                [
+                    [
+                        "function_Manage",
+                        "add",
+                        "TcharmingWolf"
+                    ]
+                ]
+            ],
+            [
+                "Lean down to the cat..",
+                "SnowTownCollegeDormStart",
+                [
+                    [
+                        "function_Manage",
+                        "add",
+                        "TfeminineCat"
+                    ]
+                ]
+            ],
+            [
+                "Step towards the spider..",
+                "",
+                [
+                    [
+                        "function_Manage",
+                        "add",
+                        "TmotherlySpider"
+                    ]
+                ]
+            ]
+        ]
+    },
+    "SnowTownChurchStart": {
+        "text": "",
+        "options": []
+    },
+    "SnowTownCollegeDormStart": {
+        "text": "You wake up in the morning white streaks of hair on your face, your vision blurred and your body tired.",
+        "options": [
+            [
+                "Rub your eyes and sit up",
+                "SnowTownCollegeDormBedroomStart"
+            ]
+        ]
+    },
+    "SnowTownCollegeDormBedroomStart": {
+        "text": "You sit up and your vision gets obscured as more lush white hair slides onto your face.",
+        "options": [
+            [
+                "Slide your hair out of your face and look around",
+                "SnowTownCollegeDormBedroomLookfromBed"
+            ]
+        ]
+    },
+    "SnowTownCollegeDormBedroomLookfromBed": {
+        "text": "As you look around you see your bed, it has a almost royal looking frame and the cover has mostly pink artwork on it.<br> A nightstand stands next to your bed <br> There also posters on your walls with pink wallpaper. The pink tinted window makes the fact you like pink even more obvious (If it is even you..)",
+        "options": [
+            [
+                "Stand up",
+                "SnowTownCollegeDormBedroomInfrontofBed"
+            ],
+            [
+                "Look in your nightstand",
+                "SnowTownCollegeDormBedroomNightstandSitting"
+            ]
+        ]
+    }
+}

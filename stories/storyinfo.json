@@ -8,5 +8,10 @@
       "title": "Obsessive friends",
       "folder": "obssesed_friends",
       "image": "obssesed_friends/another_image.jpg"
+    },
+    {
+      "title": "Variatons",
+      "folder": "variety",
+      "image": "variety/another_image.jpg"
     }
   ]
