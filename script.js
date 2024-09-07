@@ -240,6 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkForDebugIssues() {
     const visitedParts = new Set();
     const missingEndings = [];
+    const validEndings = new Set(); // To keep track of valid ending names
 
     Object.entries(storyData).forEach(([partName, part]) => {
       if (visitedParts.has(partName)) {
@@ -254,6 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if the part has a function_End
         if (funcs && funcs.some(func => func[0] === "function_End")) {
           const endingKey = funcs.find(func => func[0] === "function_End")[1];
+          validEndings.add(endingKey); // Mark as valid ending
           if (!storyEndings.endings[endingKey]) {
             console.warn(`Missing ending: ${endingKey}`);
             missingEndings.push(endingKey);
@@ -271,6 +273,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("No Missing Endings Detected.");
     }
+
+    // Count the total number of valid endings
+    console.log(`Total Endings Detected: ${validEndings.size}`);
   }
 
   // Function to update the URL hash with the current story, part, and state
