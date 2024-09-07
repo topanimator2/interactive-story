@@ -249,9 +249,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       part.options.forEach(option => {
-        const [_, nextPart] = option;
-        if (!storyData[nextPart] && !storyEndings.endings[nextPart]) {
-          console.warn(`Missing ending or continuation for part: ${nextPart}`);
+        const [_, nextPart, funcs] = option;
+
+        // Check if the part has a function_End
+        if (funcs && funcs.some(func => func[0] === "function_End")) {
+          const endingKey = funcs.find(func => func[0] === "function_End")[1];
+          if (!storyEndings.endings[endingKey]) {
+            console.warn(`Missing ending: ${endingKey}`);
+            missingEndings.push(endingKey);
+          }
+        } else if (!storyData[nextPart] && !storyEndings.endings[nextPart]) {
+          console.warn(`Missing continuation or ending for part: ${nextPart}`);
           missingEndings.push(nextPart);
         }
       });
